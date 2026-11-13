@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Kontaktieren Sie den Support nur, wenn an diesem Terminal bereits eine Schicht geöffnet ist und dieser Fehler weiterhin auftritt.",
     "validationClosedBooksGuidance": "Der heutige Geschäftstag ist abgeschlossen und kann nicht wieder geöffnet werden. Neue Bestellungen und Bargeldbewegungen sind am nächsten Geschäftstag wieder möglich.",
     "validationClosedBooksEvidenceHint": "Kontaktieren Sie den Support nur, wenn der heutige Geschäftstag zum falschen Geschäftsdatum oder in der falschen Zeitzone als geschlossen angezeigt wird.",
-    "validationGenericEvidenceHint": "Kontaktieren Sie den Support nur, wenn diese Prüfung Ihrer Ansicht nach eine gültige Anfrage abgelehnt hat."
+    "validationGenericEvidenceHint": "Kontaktieren Sie den Support nur, wenn diese Prüfung Ihrer Ansicht nach eine gültige Anfrage abgelehnt hat.",
+    "combos": "Kombimenüs",
+    "comboConfirmChoice": "Diese Auswahl übernehmen",
+    "comboChooseEverySlot": "Wählen Sie für jede Auswahl einen Artikel",
+    "comboUpgradePrompt": "Als {combo} für +{extra} nehmen?",
+    "comboUpgradeAccept": "Umwandeln"
   },
   "printTest": {
     "amt": "Betrag",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Diese Variante wird beim Speichern deaktiviert und kann auf diesem Bildschirm nicht wiederhergestellt werden.",
     "variantRemoveAllConfirm": "Wenn Sie dies abschalten, werden alle Varianten dieses Produkts deaktiviert. Frühere Bestellungen behalten sie.",
     "parentCategory": "Übergeordnete Kategorie",
-    "parentCategoryNone": "Keine (Hauptkategorie)"
+    "parentCategoryNone": "Keine (Hauptkategorie)",
+    "tabCombos": "Kombimenüs",
+    "fieldAddonDefault": "Standard",
+    "combosIntro": "Ein Kombimenü verkauft mehrere Artikel der Speisekarte zusammen zu einem Preis. Jeder Artikel bucht weiterhin seinen eigenen Bestand ab und behält seine eigenen Kosten, und der Menüpreis wird im Verhältnis zu den Kartenpreisen auf die Artikel verteilt.",
+    "addCombo": "Kombimenü hinzufügen",
+    "editCombo": "Kombimenü bearbeiten",
+    "combosEmpty": "Noch keine Kombimenüs",
+    "combosLoadFailed": "Kombimenüs konnten nicht geladen werden",
+    "comboSaved": "Kombimenü gespeichert",
+    "comboSaveFailed": "Das Kombimenü konnte nicht gespeichert werden",
+    "comboDeleteConfirm": "Kombimenü „{name}“ löschen? Bestellungen, die es bereits enthalten, bleiben unverändert.",
+    "comboName": "Name des Kombimenüs",
+    "comboPrice": "Preis des Kombimenüs",
+    "comboDescription": "Beschreibung (optional)",
+    "comboUpsell": "Dieses Kombimenü an der Kasse vorschlagen",
+    "comboSlotName": "Name der Auswahl",
+    "comboSlotNamePlaceholder": "Name der Auswahl, z. B. Getränk",
+    "comboUpcharge": "Aufpreis",
+    "comboUpchargePlaceholder": "Aufpreis (optional)",
+    "comboSearchProducts": "Produkte zum Hinzufügen suchen",
+    "addComboSlot": "Auswahl hinzufügen"
   },
   "productAnalytics": {
     "title": "Hilf uns zu entscheiden, was wir als Nächstes bauen",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 Stunden",
     "refundWindow4h": "4 Stunden",
     "refundWindowSameDay": "Gleicher Geschäftstag",
-    "refundOwnerUnlimitedNote": "Inhaber können Rückerstattungen für jede vergangene Bestellung jederzeit mit ihrer Personal-Genehmigungs-PIN genehmigen."
+    "refundOwnerUnlimitedNote": "Inhaber können Rückerstattungen für jede vergangene Bestellung jederzeit mit ihrer Personal-Genehmigungs-PIN genehmigen.",
+    "oneTapModifiers": "Mit einem Tipp hinzufügen",
+    "oneTapModifiersHint": "Hat ein Artikel nur eine Auswahl mit genau einer Option (etwa eine Soße oder eine Größe), legt ein Tipp auf die Option den Artikel direkt in den Warenkorb.",
+    "quickNotesTitle": "Schnellnotizen für Artikel",
+    "quickNotesHint": "Notizen, die der Kassierer mit einem Tipp zu einem Artikel hinzufügen kann, etwa „Ohne Soße“ oder „Wenig Eis“. Beschränken Sie eine Notiz auf bestimmte Kategorien oder lassen Sie sie für alle Artikel gelten.",
+    "quickNotesPlaceholder": "Neue Notiz, z. B. Extra knusprig",
+    "quickNotesAllItems": "Bei allen Artikeln angezeigt. Beschränken auf:",
+    "quickNotesOnlyIn": "Nur angezeigt in:",
+    "quickNotesEmpty": "Noch keine Schnellnotizen",
+    "quickNotesSaved": "Schnellnotizen gespeichert",
+    "quickNotesSaveFailed": "Schnellnotizen konnten nicht gespeichert werden"
   },
   "setup": {
     "alreadyCompleted": "Die Ersteinrichtung wurde bereits abgeschlossen. Weiterleitung zur Anmeldung…",

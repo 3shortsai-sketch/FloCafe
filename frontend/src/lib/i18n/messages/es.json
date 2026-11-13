@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Contacte a soporte solo si ya hay un turno abierto en este terminal y el error continúa.",
     "validationClosedBooksGuidance": "La jornada comercial de hoy está cerrada y no se puede reabrir. Los nuevos pedidos y movimientos de efectivo se reanudan en la siguiente jornada comercial.",
     "validationClosedBooksEvidenceHint": "Contacte a soporte solo si la jornada comercial de hoy aparece cerrada con una fecha o zona horaria incorrecta.",
-    "validationGenericEvidenceHint": "Contacte a soporte solo si cree que esta validación rechazó una solicitud válida."
+    "validationGenericEvidenceHint": "Contacte a soporte solo si cree que esta validación rechazó una solicitud válida.",
+    "combos": "Combos",
+    "comboConfirmChoice": "Usar esta opción",
+    "comboChooseEverySlot": "Elegí un producto para cada opción",
+    "comboUpgradePrompt": "¿Pasarlo a {combo} por +{extra}?",
+    "comboUpgradeAccept": "Mejorar"
   },
   "printTest": {
     "amt": "Total",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Esta variante se desactivará al guardar y no se podrá restaurar desde esta pantalla.",
     "variantRemoveAllConfirm": "Al desactivarlo se desactivarán todas las variantes de este producto. Los pedidos anteriores las conservan.",
     "parentCategory": "Categoría principal",
-    "parentCategoryNone": "Ninguna (nivel superior)"
+    "parentCategoryNone": "Ninguna (nivel superior)",
+    "tabCombos": "Combos",
+    "fieldAddonDefault": "Predeterminado",
+    "combosIntro": "Un combo vende varios productos del menú juntos a un solo precio. Cada producto sigue descontando su propio stock y conserva su propio costo, y el precio del combo se reparte entre los productos en proporción a sus precios de menú.",
+    "addCombo": "Agregar combo",
+    "editCombo": "Editar combo",
+    "combosEmpty": "Todavía no hay combos",
+    "combosLoadFailed": "No se pudieron cargar los combos",
+    "comboSaved": "Combo guardado",
+    "comboSaveFailed": "No se pudo guardar el combo",
+    "comboDeleteConfirm": "¿Eliminar el combo \"{name}\"? Los pedidos que ya lo incluyen no se modifican.",
+    "comboName": "Nombre del combo",
+    "comboPrice": "Precio del combo",
+    "comboDescription": "Descripción (opcional)",
+    "comboUpsell": "Sugerir este combo en caja",
+    "comboSlotName": "Nombre de la opción",
+    "comboSlotNamePlaceholder": "Nombre de la opción, p. ej. Bebida",
+    "comboUpcharge": "Cargo adicional",
+    "comboUpchargePlaceholder": "Adicional (opcional)",
+    "comboSearchProducts": "Buscar productos para agregar",
+    "addComboSlot": "Agregar opción"
   },
   "productAnalytics": {
     "title": "Ayúdanos a decidir qué construir después",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 horas",
     "refundWindow4h": "4 horas",
     "refundWindowSameDay": "Mismo día comercial",
-    "refundOwnerUnlimitedNote": "Los propietarios siempre pueden aprobar reembolsos de cualquier pedido anterior con su PIN de aprobación de personal."
+    "refundOwnerUnlimitedNote": "Los propietarios siempre pueden aprobar reembolsos de cualquier pedido anterior con su PIN de aprobación de personal.",
+    "oneTapModifiers": "Agregar con un toque",
+    "oneTapModifiersHint": "Cuando un producto tiene una sola opción de elección única (como una salsa o un tamaño), tocar la opción agrega el producto directamente al carrito.",
+    "quickNotesTitle": "Notas rápidas de productos",
+    "quickNotesHint": "Notas que el cajero puede agregar a un producto con un toque, como \"Sin salsa\" o \"Poco hielo\". Limitá una nota a ciertas categorías o dejala para todos los productos.",
+    "quickNotesPlaceholder": "Nota nueva, p. ej. Bien crocante",
+    "quickNotesAllItems": "Se muestra en todos los productos. Limitar a:",
+    "quickNotesOnlyIn": "Solo se muestra en:",
+    "quickNotesEmpty": "Todavía no hay notas rápidas",
+    "quickNotesSaved": "Notas rápidas guardadas",
+    "quickNotesSaveFailed": "No se pudieron guardar las notas rápidas"
   },
   "setup": {
     "alreadyCompleted": "La configuración ya se completó en esta instalación. Redirigiendo al inicio de sesión…",

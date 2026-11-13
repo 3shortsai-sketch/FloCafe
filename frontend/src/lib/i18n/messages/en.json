@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Only contact support if a shift is already open on this terminal and this error continues.",
     "validationClosedBooksGuidance": "Today's business day is closed and cannot be reopened. New orders and cash activity resume on the next business day.",
     "validationClosedBooksEvidenceHint": "Only contact support if today's business day appears closed at the wrong store date or timezone.",
-    "validationGenericEvidenceHint": "Only contact support if you believe this validation check rejected a valid request."
+    "validationGenericEvidenceHint": "Only contact support if you believe this validation check rejected a valid request.",
+    "combos": "Combos",
+    "comboConfirmChoice": "Use this choice",
+    "comboChooseEverySlot": "Pick an item for every choice",
+    "comboUpgradePrompt": "Make it a {combo} for +{extra}?",
+    "comboUpgradeAccept": "Upgrade"
   },
   "printTest": {
     "amt": "Amt",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "This variant is deactivated on save and cannot be restored from this screen.",
     "variantRemoveAllConfirm": "Turning this off deactivates every variant of this product. Historical orders keep them.",
     "parentCategory": "Parent Category",
-    "parentCategoryNone": "None (Top-level)"
+    "parentCategoryNone": "None (Top-level)",
+    "tabCombos": "Combos",
+    "fieldAddonDefault": "Default",
+    "combosIntro": "A combo sells several menu items together at one price. Each item still deducts its own stock and keeps its own cost, and the combo price is shared across the items in proportion to their menu prices.",
+    "addCombo": "Add combo",
+    "editCombo": "Edit combo",
+    "combosEmpty": "No combos yet",
+    "combosLoadFailed": "Could not load combos",
+    "comboSaved": "Combo saved",
+    "comboSaveFailed": "Could not save the combo",
+    "comboDeleteConfirm": "Delete the combo \"{name}\"? Orders that already include it are not changed.",
+    "comboName": "Combo name",
+    "comboPrice": "Combo price",
+    "comboDescription": "Description (optional)",
+    "comboUpsell": "Suggest this combo at the till",
+    "comboSlotName": "Choice name",
+    "comboSlotNamePlaceholder": "Choice name, e.g. Drink",
+    "comboUpcharge": "Extra charge",
+    "comboUpchargePlaceholder": "Extra (optional)",
+    "comboSearchProducts": "Search products to add",
+    "addComboSlot": "Add choice"
   },
   "productAnalytics": {
     "title": "Help us decide what to build next",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 hours",
     "refundWindow4h": "4 hours",
     "refundWindowSameDay": "Same business day",
-    "refundOwnerUnlimitedNote": "Owners can always approve refunds for any past order with their Staff Approval PIN."
+    "refundOwnerUnlimitedNote": "Owners can always approve refunds for any past order with their Staff Approval PIN.",
+    "oneTapModifiers": "One-tap add",
+    "oneTapModifiersHint": "When an item has only one pick-one choice (such as a sauce or a size), tapping the option adds the item straight to the cart.",
+    "quickNotesTitle": "Quick item notes",
+    "quickNotesHint": "Notes the cashier can add to an item with one tap, such as \"No sauce\" or \"Less ice\". Limit a note to certain categories, or leave it for every item.",
+    "quickNotesPlaceholder": "New note, e.g. Extra crispy",
+    "quickNotesAllItems": "Shown on every item. Limit to:",
+    "quickNotesOnlyIn": "Only shown in:",
+    "quickNotesEmpty": "No quick notes yet",
+    "quickNotesSaved": "Quick notes saved",
+    "quickNotesSaveFailed": "Could not save quick notes"
   },
   "setup": {
     "alreadyCompleted": "Setup has already been completed on this install. Redirecting to login…",

@@ -250,6 +250,44 @@ complimentary item. The permission `orders.item.price_override` is owner-only an
   in the selected store-timezone date range, or in one cash shift's window when `shift_id` is given.
   The dashboard shows them as the price exceptions card with a shift selector.
 
+## Combo meals
+
+A combo sells several menu products together at one price. It is a catalog record (`combos`,
+`combo_slots`, `combo_slot_options`), not a product: each slot is one choice (for example "Drink")
+listing the products that can fill it, each with an optional `upcharge`. Owners and managers edit
+combos on the Products page, Combos tab (`catalog.manage`).
+
+- In the cart a combo is one line per slot. Each line is an ordinary order item for its real
+  product and carries `combo: { combo_id, group_key, slot_id }`; the lines of one combo share a
+  `group_key` and one quantity. Removing or re-quantifying any line applies to the whole combo.
+- The backend prices combos (`resolveComboLinePrices` in `main/services/combos.ts`) on order
+  creation, on adding items, and in `POST /api/tax/preview`. A group must fill every slot of an
+  active combo exactly once, with one of that slot's products, at one whole-number quantity, and
+  its lines cannot carry a `price_override`; anything else is a `400`. The combo price plus the
+  chosen upcharges is split across the lines in proportion to each product's own menu (or variant)
+  price, by largest remainder in currency minor units, and becomes each line's `unit_price`.
+  Add-ons are charged on top as usual.
+- Because the components are real order items, stock, recipes, ingredient cost, tax categories, the
+  KDS, receipts, reports, and refunds all work per product. Each line also records `combo_id`,
+  `combo_name`, and a server-generated `combo_group`.
+- A combo line cannot be edited on its own (`409` from the item edit route), because the other
+  lines would keep a combo price that no longer applies. Cancelling a line is allowed.
+- Deleting a combo is a soft delete: it can no longer be sold, and sold lines keep its name.
+- When the cashier adds a product on its own that also fills a slot of an upsell-enabled combo, the
+  POS offers the cheapest such combo ("Make it a … for +…"). Accepting takes one unit of that line
+  into a new combo with the product already picked.
+
+## Quick item notes and one-tap choices
+
+- `quick_notes` (setting, edited in Settings, POS) is a list of up to 40 short notes, each limited to
+  some categories or offered on every item. The POS shows them as chips above the special
+  instructions box of the item customizer; a chip adds or removes its text in the line's
+  `special_instructions`, so notes reach the kitchen ticket and KDS like typed notes.
+- An add-on can be marked `is_default`; the customizer preselects default add-ons when an item is
+  first added.
+- The per-device POS setting "One-tap add" adds an item as soon as the cashier taps an option when
+  the item's only choice is one required pick-one group, or a variant with no add-on groups.
+
 ## Bills
 
 `POST /api/bills/generate` creates the order's bill, or, when a bill already exists in `unpaid`,

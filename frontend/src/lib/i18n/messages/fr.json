@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Contactez l'assistance uniquement si un poste est déjà ouvert sur ce terminal et que cette erreur persiste.",
     "validationClosedBooksGuidance": "La journée comptable d'aujourd'hui est clôturée et ne peut pas être rouverte. Les nouvelles commandes et opérations espèces reprendront à la prochaine journée comptable.",
     "validationClosedBooksEvidenceHint": "Contactez l'assistance uniquement si la journée d'aujourd'hui apparaît clôturée à une date ou un fuseau horaire erronés.",
-    "validationGenericEvidenceHint": "Contactez l'assistance uniquement si vous pensez que ce contrôle de validation a rejeté une demande valide."
+    "validationGenericEvidenceHint": "Contactez l'assistance uniquement si vous pensez que ce contrôle de validation a rejeté une demande valide.",
+    "combos": "Formules",
+    "comboConfirmChoice": "Valider ce choix",
+    "comboChooseEverySlot": "Choisissez un article pour chaque choix",
+    "comboUpgradePrompt": "Passer en {combo} pour +{extra} ?",
+    "comboUpgradeAccept": "Passer en formule"
   },
   "printTest": {
     "amt": "Montant",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Cette variante sera désactivée à l’enregistrement et ne pourra pas être restaurée depuis cet écran.",
     "variantRemoveAllConfirm": "Si vous le désactivez, toutes les variantes de ce produit seront désactivées. Les commandes passées les conservent.",
     "parentCategory": "Catégorie parente",
-    "parentCategoryNone": "Aucune (niveau principal)"
+    "parentCategoryNone": "Aucune (niveau principal)",
+    "tabCombos": "Formules",
+    "fieldAddonDefault": "Par défaut",
+    "combosIntro": "Une formule vend plusieurs articles de la carte ensemble à un prix unique. Chaque article continue de déduire son propre stock et de conserver son propre coût, et le prix de la formule est réparti entre les articles au prorata de leurs prix à la carte.",
+    "addCombo": "Ajouter une formule",
+    "editCombo": "Modifier la formule",
+    "combosEmpty": "Aucune formule pour le moment",
+    "combosLoadFailed": "Impossible de charger les formules",
+    "comboSaved": "Formule enregistrée",
+    "comboSaveFailed": "Impossible d’enregistrer la formule",
+    "comboDeleteConfirm": "Supprimer la formule « {name} » ? Les commandes qui l’incluent déjà ne sont pas modifiées.",
+    "comboName": "Nom de la formule",
+    "comboPrice": "Prix de la formule",
+    "comboDescription": "Description (facultatif)",
+    "comboUpsell": "Proposer cette formule en caisse",
+    "comboSlotName": "Nom du choix",
+    "comboSlotNamePlaceholder": "Nom du choix, p. ex. Boisson",
+    "comboUpcharge": "Supplément",
+    "comboUpchargePlaceholder": "Supplément (facultatif)",
+    "comboSearchProducts": "Rechercher des produits à ajouter",
+    "addComboSlot": "Ajouter un choix"
   },
   "productAnalytics": {
     "title": "Aidez-nous à décider quoi construire ensuite",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 heures",
     "refundWindow4h": "4 heures",
     "refundWindowSameDay": "Même journée commerciale",
-    "refundOwnerUnlimitedNote": "Les propriétaires peuvent toujours approuver les remboursements de toute commande passée avec leur code PIN d’approbation."
+    "refundOwnerUnlimitedNote": "Les propriétaires peuvent toujours approuver les remboursements de toute commande passée avec leur code PIN d’approbation.",
+    "oneTapModifiers": "Ajout en une touche",
+    "oneTapModifiersHint": "Lorsqu’un article n’a qu’un seul choix à option unique (comme une sauce ou une taille), toucher l’option ajoute directement l’article au panier.",
+    "quickNotesTitle": "Notes rapides sur les articles",
+    "quickNotesHint": "Notes que le caissier peut ajouter à un article d’une seule touche, comme « Sans sauce » ou « Peu de glaçons ». Limitez une note à certaines catégories, ou laissez-la pour tous les articles.",
+    "quickNotesPlaceholder": "Nouvelle note, p. ex. Bien croustillant",
+    "quickNotesAllItems": "Affichée sur tous les articles. Limiter à :",
+    "quickNotesOnlyIn": "Affichée uniquement dans :",
+    "quickNotesEmpty": "Aucune note rapide pour le moment",
+    "quickNotesSaved": "Notes rapides enregistrées",
+    "quickNotesSaveFailed": "Impossible d’enregistrer les notes rapides"
   },
   "setup": {
     "alreadyCompleted": "La configuration a déjà été effectuée sur cette installation. Redirection vers la connexion…",

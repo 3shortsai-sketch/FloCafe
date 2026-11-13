@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "لا تتواصل مع الدعم إلا إذا كانت الوردية مفتوحة بالفعل على هذا الجهاز واستمر هذا الخطأ.",
     "validationClosedBooksGuidance": "تم إغلاق يوم العمل الحالي ولا يمكن إعادة فتحه. تُستأنف الطلبات الجديدة وحركة النقد في يوم العمل التالي.",
     "validationClosedBooksEvidenceHint": "لا تتواصل مع الدعم إلا إذا ظهر يوم العمل الحالي مغلقًا في تاريخ أو منطقة زمنية خاطئة للمتجر.",
-    "validationGenericEvidenceHint": "لا تتواصل مع الدعم إلا إذا كنت تعتقد أن فحص التحقق هذا رفض طلبًا صالحًا."
+    "validationGenericEvidenceHint": "لا تتواصل مع الدعم إلا إذا كنت تعتقد أن فحص التحقق هذا رفض طلبًا صالحًا.",
+    "combos": "وجبات الكومبو",
+    "comboConfirmChoice": "استخدام هذا الاختيار",
+    "comboChooseEverySlot": "اختر صنفًا لكل اختيار",
+    "comboUpgradePrompt": "هل تريد تحويله إلى {combo} مقابل +{extra}؟",
+    "comboUpgradeAccept": "ترقية"
   },
   "printTest": {
     "amt": "المبلغ",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "سيتم تعطيل هذا الخيار عند الحفظ ولا يمكن استعادته من هذه الشاشة.",
     "variantRemoveAllConfirm": "سيؤدي إيقاف هذا إلى تعطيل جميع خيارات المنتج. تحتفظ الطلبات السابقة بها.",
     "parentCategory": "الفئة الرئيسية",
-    "parentCategoryNone": "بدون (فئة رئيسية)"
+    "parentCategoryNone": "بدون (فئة رئيسية)",
+    "tabCombos": "وجبات الكومبو",
+    "fieldAddonDefault": "افتراضي",
+    "combosIntro": "تبيع وجبة الكومبو عدة أصناف من القائمة معًا بسعر واحد. يظل كل صنف يخصم من مخزونه الخاص ويحتفظ بتكلفته الخاصة، ويُوزَّع سعر الكومبو على الأصناف بنسبة أسعارها في القائمة.",
+    "addCombo": "إضافة كومبو",
+    "editCombo": "تعديل الكومبو",
+    "combosEmpty": "لا توجد وجبات كومبو حتى الآن",
+    "combosLoadFailed": "تعذّر تحميل وجبات الكومبو",
+    "comboSaved": "تم حفظ الكومبو",
+    "comboSaveFailed": "تعذّر حفظ الكومبو",
+    "comboDeleteConfirm": "هل تريد حذف الكومبو «{name}»؟ لن تتغير الطلبات التي تتضمنه بالفعل.",
+    "comboName": "اسم الكومبو",
+    "comboPrice": "سعر الكومبو",
+    "comboDescription": "الوصف (اختياري)",
+    "comboUpsell": "اقتراح هذا الكومبو عند الدفع",
+    "comboSlotName": "اسم الاختيار",
+    "comboSlotNamePlaceholder": "اسم الاختيار، مثل: مشروب",
+    "comboUpcharge": "رسوم إضافية",
+    "comboUpchargePlaceholder": "إضافي (اختياري)",
+    "comboSearchProducts": "ابحث عن منتجات لإضافتها",
+    "addComboSlot": "إضافة اختيار"
   },
   "productAnalytics": {
     "title": "ساعدنا في تحديد ما نبنيه بعد ذلك",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "ساعتان",
     "refundWindow4h": "4 ساعات",
     "refundWindowSameDay": "نفس يوم العمل",
-    "refundOwnerUnlimitedNote": "يمكن للمالكين دائماً الموافقة على استرداد أي طلب سابق باستخدام رمز PIN للموافقة الخاص بهم."
+    "refundOwnerUnlimitedNote": "يمكن للمالكين دائماً الموافقة على استرداد أي طلب سابق باستخدام رمز PIN للموافقة الخاص بهم.",
+    "oneTapModifiers": "إضافة بلمسة واحدة",
+    "oneTapModifiersHint": "عندما يكون للصنف اختيار واحد فقط من نوع «اختر واحدًا» (مثل الصلصة أو الحجم)، يؤدي النقر على الخيار إلى إضافة الصنف مباشرةً إلى سلة التسوق.",
+    "quickNotesTitle": "ملاحظات سريعة للأصناف",
+    "quickNotesHint": "ملاحظات يمكن للكاشير إضافتها إلى صنف بلمسة واحدة، مثل «بدون صلصة» أو «ثلج قليل». يمكنك قصر الملاحظة على فئات معينة، أو تركها لكل الأصناف.",
+    "quickNotesPlaceholder": "ملاحظة جديدة، مثل: مقرمش جدًا",
+    "quickNotesAllItems": "تظهر على كل الأصناف. القصر على:",
+    "quickNotesOnlyIn": "تظهر فقط في:",
+    "quickNotesEmpty": "لا توجد ملاحظات سريعة حتى الآن",
+    "quickNotesSaved": "تم حفظ الملاحظات السريعة",
+    "quickNotesSaveFailed": "تعذّر حفظ الملاحظات السريعة"
   },
   "setup": {
     "alreadyCompleted": "تم الانتهاء من عملية الإعداد في هذا التثبيت. يتم إعادة التوجيه إلى صفحة تسجيل الدخول…",

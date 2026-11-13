@@ -2,6 +2,7 @@ import Decimal from 'decimal.js';
 import { getDatabase, getSettingValue } from '../db';
 import { normalizeOverridePrice } from './item-price-override';
 import { resolveOrderItemVariant, variantUnitPrice } from './product-variants';
+import { ComboValidationError, resolveComboLinePrices, type ComboLineInput } from './combos';
 import { getBundledCountryPack } from '../tax-packs/bundled';
 import {
   getCountryByCode,
@@ -1528,7 +1529,26 @@ export async function calculateTaxPreview(req: any, res: any): Promise<void> {
       subtotal: number;
     }> = [];
 
-    for (const itemData of items) {
+    let comboPrices: ReturnType<typeof resolveComboLinePrices>;
+    try {
+      comboPrices = resolveComboLinePrices(
+        db,
+        items.map((entry: unknown) =>
+          entry && typeof entry === 'object'
+            ? (entry as ComboLineInput)
+            : { product_id: '', quantity: 0 },
+        ),
+        { isOnlineOrder, minorFactor },
+      );
+    } catch (error) {
+      if (error instanceof ComboValidationError) {
+        res.status(400).json({ error: error.message });
+        return;
+      }
+      throw error;
+    }
+
+    for (const [itemIndex, itemData] of items.entries()) {
       if (!itemData || typeof itemData !== 'object' || !itemData.product_id) {
         continue;
       }
@@ -1543,9 +1563,13 @@ export async function calculateTaxPreview(req: any, res: any): Promise<void> {
       // The cashier is quoted from the same catalog lookup the order is priced
       // from, so a variant basket cannot be quoted at the parent price.
       const variant = resolveOrderItemVariant(db, product, itemData, isOnlineOrder);
-      const menuUnitPrice = variant
-        ? variantUnitPrice(variant, isOnlineOrder)
-        : parseFloat(product.price) || 0;
+      const comboUnitPrice = comboPrices[itemIndex]?.unitPrice;
+      const menuUnitPrice =
+        comboUnitPrice !== undefined
+          ? comboUnitPrice
+          : variant
+            ? variantUnitPrice(variant, isOnlineOrder)
+            : parseFloat(product.price) || 0;
       // A cart line the owner has overridden is quoted at its normalized override price.
       const overridePrice = Number(itemData.price_override?.price);
       const unitPrice =

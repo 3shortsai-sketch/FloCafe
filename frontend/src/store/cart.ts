@@ -42,6 +42,9 @@ interface CartState {
     specialInstructions: string,
     variant?: ProductVariant | null,
   ) => void;
+  /** Adds every line of one combo; they share a group key and one quantity. */
+  addCombo: (lines: CartItem[]) => void;
+  /** Removing or re-quantifying one combo line applies to its whole combo. */
   removeItem: (cartItemId: string) => void;
   /** Sets (or with null clears) the owner-approved selling price for one line. */
   setItemPriceOverride: (
@@ -166,6 +169,7 @@ export const useCartStore = create<CartState>((set, get) => ({
       addons,
       specialInstructions,
       target.price_override,
+      target.combo,
     );
     if (newId === cartItemId) {
       set({
@@ -210,14 +214,25 @@ export const useCartStore = create<CartState>((set, get) => ({
     }
   },
 
+  addCombo: (lines) => {
+    if (lines.length === 0) return;
+    set({ items: [...get().items, ...lines] });
+  },
+
   removeItem: (cartItemId) => {
-    set({ items: get().items.filter((i) => i.id !== cartItemId) });
+    const items = get().items;
+    const groupKey = items.find((i) => i.id === cartItemId)?.combo?.group_key;
+    set({
+      items: items.filter((i) =>
+        groupKey ? i.combo?.group_key !== groupKey : i.id !== cartItemId,
+      ),
+    });
   },
 
   setItemPriceOverride: (cartItemId, override) => {
     const items = get().items;
     const target = items.find((i) => i.id === cartItemId);
-    if (!target) return;
+    if (!target || target.combo) return;
     const nextOverride = override
       ? { price: normalizeOverridePrice(override.price), reason: override.reason }
       : null;
@@ -252,6 +267,7 @@ export const useCartStore = create<CartState>((set, get) => ({
         item.addons,
         item.special_instructions,
         null,
+        item.combo,
       );
       const existing = merged.find((m) => m.id === cleanId);
       if (existing) {
@@ -271,8 +287,12 @@ export const useCartStore = create<CartState>((set, get) => ({
       get().removeItem(cartItemId);
       return;
     }
+    const items = get().items;
+    const groupKey = items.find((i) => i.id === cartItemId)?.combo?.group_key;
     set({
-      items: get().items.map((i) => (i.id === cartItemId ? { ...i, quantity } : i)),
+      items: items.map((i) =>
+        (groupKey ? i.combo?.group_key === groupKey : i.id === cartItemId) ? { ...i, quantity } : i,
+      ),
     });
   },
 

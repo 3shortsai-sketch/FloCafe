@@ -82,6 +82,7 @@ import {
   type PriceOverrideInput,
 } from '../services/item-price-override';
 import { notifyKdsUpdate, notifyOrderUpdated } from '../services/kds';
+import { markOrderItemCombo, resolveComboLinePrices } from '../services/combos';
 import { cloudSync } from '../services/cloud-sync';
 import {
   validateOrderNotes,
@@ -982,6 +983,8 @@ interface OrderItemInput {
   special_instructions?: string | null;
   /** Owner-only manual selling price, applied instead of the menu price. */
   price_override?: { price?: unknown; reason?: unknown } | null;
+  /** Names the combo slot this line fills; the server prices the whole group. */
+  combo?: unknown;
   recipe_snapshot?: unknown;
   inventory_deducted_quantity?: number;
   inventory_target_product_id?: string | null;
@@ -1026,7 +1029,14 @@ function insertOrderItems(
 `);
 
   const insertedItemIds: (number | bigint)[] = [];
-  for (const item of items) {
+  const comboPrices = context.preserveUnitPrice
+    ? items.map(() => null)
+    : resolveComboLinePrices(db, items, {
+        isOnlineOrder,
+        minorFactor: getCurrencyMinorUnitFactor(getTenantCurrency()),
+      });
+  for (const [itemIndex, item] of items.entries()) {
+    const comboPrice = comboPrices[itemIndex];
     const product = db.prepare('SELECT * FROM products WHERE id = ?').get(item.product_id) as
       | ProductRow
       | undefined;
@@ -1058,9 +1068,11 @@ function insertOrderItems(
     });
     let unitPrice = context.preserveUnitPrice
       ? Number(item.unit_price)
-      : variant
-        ? variantUnitPrice(variant, isOnlineOrder)
-        : parseFloat(String(product.price));
+      : comboPrice
+        ? comboPrice.unitPrice
+        : variant
+          ? variantUnitPrice(variant, isOnlineOrder)
+          : parseFloat(String(product.price));
     const menuUnitPrice = unitPrice;
     let priceOverride: PriceOverrideInput | null = null;
     if (item.price_override !== undefined && item.price_override !== null) {
@@ -1168,6 +1180,7 @@ function insertOrderItems(
       itemCreatedAt,
     );
     insertOrderItemAddons(db, insertItemResult.lastInsertRowid, item.addons, itemCreatedAt);
+    if (comboPrice) markOrderItemCombo(db, insertItemResult.lastInsertRowid, comboPrice);
     insertedItemIds.push(insertItemResult.lastInsertRowid);
     if (priceOverride) {
       markItemPriceOverridden(db, insertItemResult.lastInsertRowid, {
@@ -1284,6 +1297,7 @@ interface OrderItemRow {
   inventory_product_id: string | null;
   inventory_variant_id: string | null;
   recipe_snapshot: string | null;
+  combo_group?: string | null;
   updated_at: string;
 }
 
@@ -2415,7 +2429,12 @@ router.post(
           deduction: ReturnType<typeof resolveInventoryDeduction>;
           itemSubtotal: number;
           itemId: string;
+          comboPrice: ReturnType<typeof resolveComboLinePrices>[number];
         }> = [];
+        const comboPrices = resolveComboLinePrices(db, items, {
+          isOnlineOrder,
+          minorFactor: getCurrencyMinorUnitFactor(getTenantCurrency()),
+        });
 
         for (let idx = 0; idx < items.length; idx++) {
           const item = items[idx];
@@ -2435,9 +2454,12 @@ router.post(
           // Validate quantity and price
           validateProductQuantity(product, quantity);
           const variant = resolveOrderItemVariant(db, product, item, isOnlineOrder);
-          let unitPrice = variant
-            ? variantUnitPrice(variant, isOnlineOrder)
-            : parseFloat(product.price);
+          const comboPrice = comboPrices[idx];
+          let unitPrice = comboPrice
+            ? comboPrice.unitPrice
+            : variant
+              ? variantUnitPrice(variant, isOnlineOrder)
+              : parseFloat(product.price);
           const menuUnitPrice = unitPrice;
           let priceOverride: PriceOverrideInput | null = null;
           if (item.price_override !== undefined && item.price_override !== null) {
@@ -2498,6 +2520,7 @@ router.post(
             deduction,
             itemSubtotal,
             itemId,
+            comboPrice,
           });
         }
 
@@ -2553,6 +2576,7 @@ router.post(
             priceOverride,
             deduction,
             itemSubtotal,
+            comboPrice,
           } = validatedItems[idx];
           const taxResult = documentTaxResults[idx];
 
@@ -2608,6 +2632,7 @@ router.post(
             itemCreatedAt,
           );
           insertOrderItemAddons(db, insertItemResult.lastInsertRowid, item.addons, itemCreatedAt);
+          if (comboPrice) markOrderItemCombo(db, insertItemResult.lastInsertRowid, comboPrice);
           if (priceOverride) {
             markItemPriceOverridden(db, insertItemResult.lastInsertRowid, {
               originalUnitPrice: menuUnitPrice,
@@ -6637,6 +6662,15 @@ router.patch(
 
         if (isTerminalItemStatus(oldItem.status)) {
           throw Object.assign(new Error('This item can no longer be edited'), { statusCode: 400 });
+        }
+        if (oldItem.combo_group) {
+          // Editing one component would leave the rest priced as a combo that no longer exists.
+          throw Object.assign(
+            new Error(
+              'Combo items cannot be edited one by one; cancel them and add the combo again',
+            ),
+            { statusCode: 409 },
+          );
         }
         if (['completed', 'cancelled'].includes(currentOrder.status)) {
           throw Object.assign(new Error('Cannot edit items on completed or cancelled orders'), {

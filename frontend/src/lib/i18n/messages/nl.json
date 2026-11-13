@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Neem alleen contact op met support als er al een dienst open is op deze terminal en deze fout blijft optreden.",
     "validationClosedBooksGuidance": "De werkdag van vandaag is afgesloten en kan niet worden heropend. Nieuwe bestellingen en contante betalingen worden op de volgende werkdag hervat.",
     "validationClosedBooksEvidenceHint": "Neem alleen contact op met support als de werkdag van vandaag op een verkeerde winkeldatum of tijdzone als gesloten wordt weergegeven.",
-    "validationGenericEvidenceHint": "Neem alleen contact op met support als u denkt dat deze validatiecontrole een geldig verzoek heeft geweigerd."
+    "validationGenericEvidenceHint": "Neem alleen contact op met support als u denkt dat deze validatiecontrole een geldig verzoek heeft geweigerd.",
+    "combos": "Combimenu's",
+    "comboConfirmChoice": "Deze keuze gebruiken",
+    "comboChooseEverySlot": "Kies een artikel voor elke keuze",
+    "comboUpgradePrompt": "Er een {combo} van maken voor +{extra}?",
+    "comboUpgradeAccept": "Omzetten"
   },
   "printTest": {
     "amt": "Bedrag",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Deze variant wordt bij opslaan gedeactiveerd en kan vanaf dit scherm niet worden hersteld.",
     "variantRemoveAllConfirm": "Als u dit uitschakelt, worden alle varianten van dit product gedeactiveerd. Eerdere bestellingen behouden ze.",
     "parentCategory": "Bovenliggende categorie",
-    "parentCategoryNone": "Geen (hoofdniveau)"
+    "parentCategoryNone": "Geen (hoofdniveau)",
+    "tabCombos": "Combimenu's",
+    "fieldAddonDefault": "Standaard",
+    "combosIntro": "Een combimenu verkoopt meerdere menuartikelen samen voor één prijs. Elk artikel boekt nog steeds zijn eigen voorraad af en houdt zijn eigen kostprijs, en de prijs van het combimenu wordt over de artikelen verdeeld naar verhouding van hun menuprijzen.",
+    "addCombo": "Combimenu toevoegen",
+    "editCombo": "Combimenu bewerken",
+    "combosEmpty": "Nog geen combimenu's",
+    "combosLoadFailed": "Kan combimenu's niet laden",
+    "comboSaved": "Combimenu opgeslagen",
+    "comboSaveFailed": "Kan het combimenu niet opslaan",
+    "comboDeleteConfirm": "Het combimenu \"{name}\" verwijderen? Bestellingen waarin het al zit, worden niet gewijzigd.",
+    "comboName": "Naam van combimenu",
+    "comboPrice": "Prijs van combimenu",
+    "comboDescription": "Beschrijving (optioneel)",
+    "comboUpsell": "Dit combimenu aan de kassa voorstellen",
+    "comboSlotName": "Naam van keuze",
+    "comboSlotNamePlaceholder": "Naam van keuze, bijv. Drankje",
+    "comboUpcharge": "Meerprijs",
+    "comboUpchargePlaceholder": "Meerprijs (optioneel)",
+    "comboSearchProducts": "Producten zoeken om toe te voegen",
+    "addComboSlot": "Keuze toevoegen"
   },
   "productAnalytics": {
     "title": "Help ons bepalen wat we hierna bouwen",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 uur",
     "refundWindow4h": "4 uur",
     "refundWindowSameDay": "Zelfde werkdag",
-    "refundOwnerUnlimitedNote": "Eigenaren kunnen terugbetalingen voor elke eerdere bestelling altijd goedkeuren met hun goedkeuringspincode."
+    "refundOwnerUnlimitedNote": "Eigenaren kunnen terugbetalingen voor elke eerdere bestelling altijd goedkeuren met hun goedkeuringspincode.",
+    "oneTapModifiers": "Toevoegen met één tik",
+    "oneTapModifiersHint": "Als een artikel maar één keuze met één optie heeft (zoals een saus of een formaat), voegt een tik op de optie het artikel direct toe aan de winkelwagen.",
+    "quickNotesTitle": "Snelle artikelopmerkingen",
+    "quickNotesHint": "Opmerkingen die de kassier met één tik aan een artikel kan toevoegen, zoals \"Zonder saus\" of \"Weinig ijs\". Beperk een opmerking tot bepaalde categorieën of laat hem voor alle artikelen gelden.",
+    "quickNotesPlaceholder": "Nieuwe opmerking, bijv. Extra krokant",
+    "quickNotesAllItems": "Getoond bij alle artikelen. Beperken tot:",
+    "quickNotesOnlyIn": "Alleen getoond in:",
+    "quickNotesEmpty": "Nog geen snelle opmerkingen",
+    "quickNotesSaved": "Snelle opmerkingen opgeslagen",
+    "quickNotesSaveFailed": "Kan snelle opmerkingen niet opslaan"
   },
   "setup": {
     "alreadyCompleted": "De installatie is bij deze installatie al voltooid. Omleiden naar inloggen…",

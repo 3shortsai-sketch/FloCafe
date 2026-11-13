@@ -6,6 +6,7 @@ import api from '@/lib/api';
 import { useAuthStore } from '@/store/auth';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import CombosTab from '@/components/products/CombosTab';
 import toast from 'react-hot-toast';
 import {
   Plus,
@@ -15,6 +16,7 @@ import {
   Package,
   Folder,
   Puzzle,
+  Layers,
   FileSpreadsheet,
   Download,
   Upload,
@@ -102,7 +104,7 @@ const CATEGORY_COLORS: { key: string; labelKey: ProductsKey; bg: string; text: s
 const VARIANT_CELL =
   'w-full px-2 py-1.5 text-sm border border-gray-300 dark:border-border rounded-lg focus:ring-2 focus:ring-brand outline-none';
 
-type TabType = 'products' | 'categories' | 'addons';
+type TabType = 'products' | 'categories' | 'addons' | 'combos';
 
 /** One editable add-on row inside the add-on group editor. */
 interface AddonEditorRow {
@@ -110,6 +112,7 @@ interface AddonEditorRow {
   name: string;
   price: number;
   is_active?: boolean;
+  is_default?: boolean;
   track_inventory: boolean;
   stock_quantity: string;
   low_stock_threshold: string;
@@ -125,7 +128,7 @@ interface AddonEditorRow {
 }
 
 function resolveProductsTab(value: string | null | undefined): TabType {
-  return value === 'categories' || value === 'addons' ? value : 'products';
+  return value === 'categories' || value === 'addons' || value === 'combos' ? value : 'products';
 }
 
 function ProductsTabQuerySync({ onTabChange }: { onTabChange: (tab: TabType) => void }) {
@@ -824,6 +827,7 @@ export default function ProductsPage() {
         name: a.name,
         price: a.price,
         is_active: Boolean(a.is_active),
+        is_default: Boolean(a.is_default),
         track_inventory: Boolean(a.track_inventory),
         stock_quantity: String(a.stock_quantity ?? 0),
         low_stock_threshold: String(a.low_stock_threshold ?? 0),
@@ -854,6 +858,7 @@ export default function ProductsPage() {
           name: addon.name,
           price: roundCurrencyValue(Number(addon.price), unitAdapter.maxDecimals),
           is_active: addon.is_active,
+          is_default: Boolean(addon.is_default),
           track_inventory: addon.track_inventory,
           low_stock_threshold: Math.max(0, Number(addon.low_stock_threshold) || 0),
           // Saved tax settings are echoed back; omitted fields fall back to backend defaults.
@@ -1181,9 +1186,25 @@ export default function ProductsPage() {
               <Puzzle size={16} /> {t('tabAddonGroups')}
             </TabsTrigger>
           )}
+          {isOwnerOrManager && (
+            <TabsTrigger value="combos">
+              <Layers size={16} /> {t('tabCombos')}
+            </TabsTrigger>
+          )}
         </TabsList>
 
-        <div className="mb-4 flex shrink-0 flex-wrap items-center justify-between gap-3">
+        {activeTab === 'combos' && isOwnerOrManager && (
+          <TabsContent
+            value="combos"
+            className="dashboard-scroll-pane flex min-h-0 flex-1 flex-col"
+          >
+            <CombosTab products={products} />
+          </TabsContent>
+        )}
+
+        <div
+          className={`mb-4 flex shrink-0 flex-wrap items-center justify-between gap-3 ${activeTab === 'combos' ? 'hidden' : ''}`}
+        >
           <div className="relative w-full sm:max-w-xs">
             <Search
               size={16}
@@ -1223,7 +1244,10 @@ export default function ProductsPage() {
                 {t('assignTaxCategory')}
               </Button>
             )}
-            <Button variant="outline" onClick={() => openCsvModal(activeTab)}>
+            <Button
+              variant="outline"
+              onClick={() => openCsvModal(activeTab === 'combos' ? 'products' : activeTab)}
+            >
               <FileSpreadsheet size={16} className="me-1" /> CSV
             </Button>
             {activeTab === 'products' && (
@@ -2712,6 +2736,20 @@ export default function ProductsPage() {
                                 <X size={16} />
                               </button>
                             </div>
+                            <label className="flex items-center gap-1.5">
+                              <input
+                                type="checkbox"
+                                checked={Boolean(addon.is_default)}
+                                aria-label={t('fieldAddonDefault')}
+                                onChange={(e) =>
+                                  updateAddonItem(idx, { is_default: e.target.checked })
+                                }
+                                className="rounded border-gray-300 dark:border-border text-brand focus:ring-brand"
+                              />
+                              <span className="text-xs text-muted-foreground">
+                                {t('fieldAddonDefault')}
+                              </span>
+                            </label>
                             <label className="flex items-center gap-1.5">
                               <input
                                 type="checkbox"

@@ -152,6 +152,8 @@ export interface Addon {
   stock_quantity: number;
   low_stock_threshold: number;
   is_active: boolean;
+  /** Preselected when the item is first added; the cashier can still change it. */
+  is_default?: boolean;
   sort_order: number;
   tax_category_id?: string | null;
   tax_behavior?: Product['tax_behavior'];
@@ -465,6 +467,50 @@ export interface CartItem {
   variant?: ProductVariant | null;
   /** Owner-set selling price for this line, sent to the server when the order is placed. */
   price_override?: { price: number; reason: string } | null;
+  /** Set when this line fills one slot of a combo; lines of one combo share a group_key. */
+  combo?: CartComboRef | null;
+}
+
+export interface CartComboRef {
+  combo_id: string;
+  combo_name: string;
+  group_key: string;
+  slot_id: string;
+  slot_name: string;
+  /** Display share of the combo price; the server allocates the charged price. */
+  unit_price: number;
+}
+
+export interface ComboSlotOption {
+  product_id: string;
+  product_name: string;
+  product_price: number;
+  upcharge: number;
+  sort_order: number;
+}
+
+export interface ComboSlot {
+  id: string;
+  name: string;
+  sort_order: number;
+  options: ComboSlotOption[];
+}
+
+export interface Combo {
+  id: string;
+  name: string;
+  description: string | null;
+  price: number;
+  image_url: string | null;
+  is_active: number | boolean;
+  upsell_enabled: number | boolean;
+  sort_order: number;
+  slots: ComboSlot[];
+}
+
+export interface QuickNote {
+  text: string;
+  category_ids: string[];
 }
 
 export interface Counter {

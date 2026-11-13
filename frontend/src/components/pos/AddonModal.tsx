@@ -11,6 +11,7 @@ import { fractionalQuantityStep, roundToQuantityPrecision } from '@/lib/utils';
 import { addonStockCeiling, isAddonLowStock, isAddonSoldOut } from '@/lib/addon-inventory';
 import { activeVariants, isVariantSoldOut, selectDefaultVariant } from '@/lib/product-variants';
 import { cartVariantUnitPrice } from '@/lib/cart-price';
+import { MAX_ITEM_NOTE_LENGTH, noteSegments, toggleQuickNote } from '@/lib/combos';
 import type { Product, Addon, AddonGroup, ProductVariant } from '@/lib/types';
 
 interface Props {
@@ -33,6 +34,38 @@ interface Props {
   mode?: 'add' | 'edit';
   /** Quote the variant's online platform price, matching the order this line becomes. */
   onlinePlatformSelected?: boolean;
+  /** One-tap note chips shown above the instructions box. */
+  quickNotes?: string[];
+  /** Add on the first tap when the item has a single pick-one choice. */
+  oneTap?: boolean;
+  /** Configures one combo component: no quantity or price, the combo owns both. */
+  comboSlot?: boolean;
+}
+
+function requiredMinimum(group: AddonGroup): number {
+  return Boolean(group.is_required)
+    ? Math.max(1, group.min_selection || 1)
+    : group.min_selection || 0;
+}
+
+/** A group answered by exactly one tap: pick one, exactly one, no quantities. */
+function isSingleChoiceGroup(group: AddonGroup): boolean {
+  return (
+    requiredMinimum(group) === 1 && group.max_selection === 1 && !group.allow_multiple_quantities
+  );
+}
+
+function defaultSelections(groups: AddonGroup[]): Record<string | number, Addon[]> {
+  const selections: Record<string | number, Addon[]> = {};
+  for (const group of groups) {
+    const cap = group.max_selection || Infinity;
+    const defaults = (group.addons || [])
+      .filter((addon) => addon.is_active && addon.is_default && !isAddonSoldOut(addon))
+      .slice(0, cap)
+      .map((addon) => ({ ...addon, quantity: 1 }));
+    if (defaults.length > 0) selections[group.id] = defaults;
+  }
+  return selections;
 }
 
 function groupInitialAddons(addons: Addon[]): Record<string | number, Addon[]> {
@@ -97,12 +130,17 @@ export default function AddonModal({
   initialVariant = null,
   mode = 'add',
   onlinePlatformSelected = false,
+  quickNotes = [],
+  oneTap = false,
+  comboSlot = false,
 }: Props) {
   const t = useTranslations('pos');
   const tenantFmt = useFormatCurrency();
   const fmt = country ? (n: number) => formatCurrencyForTenant(n, country, currency) : tenantFmt;
   const [selected, setSelected] = useState<Record<string | number, Addon[]>>(() =>
-    groupInitialAddons(initialAddons),
+    mode === 'add' && initialAddons.length === 0
+      ? defaultSelections(product.addon_groups || [])
+      : groupInitialAddons(initialAddons),
   );
   const [quantity, setQuantity] = useState(initialQuantity);
   const [qtyDraft, setQtyDraft] = useState(() => String(initialQuantity));
@@ -137,6 +175,14 @@ export default function AddonModal({
   };
 
   const groups = product.addon_groups || [];
+  const isFirstAdd = oneTap && (mode === 'add' || comboSlot) && step == null;
+  const oneTapAddon =
+    isFirstAdd && variants.length === 0 && groups.length === 1 && isSingleChoiceGroup(groups[0]);
+  const oneTapVariant = isFirstAdd && variants.length > 0 && groups.length === 0;
+  const finish = (addons: Addon[], variant: ProductVariant | null) => {
+    onAdd(product, quantity, addons, instructions, variant);
+    onClose();
+  };
 
   const getGroupTotalQuantity = (groupId: string | number): number => {
     const list = selected[groupId] || [];
@@ -182,6 +228,10 @@ export default function AddonModal({
   const toggleAddonCheckbox = (group: AddonGroup, addon: Addon) => {
     const currentList = selected[group.id] || [];
     const exists = currentList.some((a) => a.id === addon.id);
+    if (oneTapAddon && canQuantityCoverAddonList([{ ...addon, quantity: 1 }], quantity)) {
+      finish([{ ...addon, quantity: 1 }], null);
+      return;
+    }
     if (exists) {
       updateAddonQuantity(group, addon, -1);
     } else {
@@ -199,16 +249,19 @@ export default function AddonModal({
   const addonTotal = allAddons.reduce((sum, a) => sum + Number(a.price) * (a.quantity || 1), 0);
   const itemTotal = (basePrice + addonTotal) * quantity;
 
-  const canQuantityCoverAddons = (targetQty: number): boolean => {
+  const canQuantityCoverAddons = (targetQty: number): boolean =>
+    canQuantityCoverAddonList(allAddons, targetQty);
+
+  function canQuantityCoverAddonList(list: Addon[], targetQty: number): boolean {
     if (targetQty <= 0) return false;
-    for (const addon of allAddons) {
+    for (const addon of list) {
       const rawCeiling = addonStockCeiling(addon);
       if (rawCeiling == null) continue;
       const required = (addon.quantity || 1) * targetQty;
       if (required > rawCeiling) return false;
     }
     return true;
-  };
+  }
 
   const nextItemQty = step == null ? quantity + 1 : roundToQuantityPrecision(quantity + step, step);
   const canIncreaseItemQty = canQuantityCoverAddons(nextItemQty);
@@ -250,7 +303,7 @@ export default function AddonModal({
         <div className="flex justify-between items-center p-5 border-b border-border">
           <div>
             <h2 className="text-lg font-bold text-foreground">{product.name}</h2>
-            <p className="text-brand font-semibold">{fmt(basePrice)}</p>
+            {!comboSlot && <p className="text-brand font-semibold">{fmt(basePrice)}</p>}
           </div>
           <button
             onClick={onClose}
@@ -275,7 +328,9 @@ export default function AddonModal({
                       role="radio"
                       aria-checked={isSel}
                       disabled={soldOut}
-                      onClick={() => setSelectedVariantId(variant.id)}
+                      onClick={() =>
+                        oneTapVariant ? finish([], variant) : setSelectedVariantId(variant.id)
+                      }
                       className={`touch-target inline-flex items-center gap-2 rounded-full border px-3 py-2 text-sm transition-colors ${variantPillClassName(isSel, soldOut)}`}
                     >
                       <span className="font-medium text-foreground">{variant.name}</span>
@@ -482,22 +537,48 @@ export default function AddonModal({
             <label className="block text-sm font-medium text-foreground mb-1">
               {t('specialInstructions')}
             </label>
+            {quickNotes.length > 0 && (
+              <div className="mb-2 flex flex-wrap gap-1.5" data-testid="quick-note-chips">
+                {quickNotes.map((note) => {
+                  const active = noteSegments(instructions).some(
+                    (segment) => segment.toLocaleLowerCase() === note.toLocaleLowerCase(),
+                  );
+                  return (
+                    <button
+                      key={note}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => setInstructions((current) => toggleQuickNote(current, note))}
+                      className={`touch-target rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+                        active
+                          ? 'border-brand bg-[var(--color-brand-light)] text-brand dark:text-indigo-300'
+                          : 'border-border bg-card text-foreground hover:bg-muted'
+                      }`}
+                    >
+                      {note}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
             <input
               type="text"
               value={instructions}
-              onChange={(e) => setInstructions(e.target.value.slice(0, 100))}
+              onChange={(e) => setInstructions(e.target.value.slice(0, MAX_ITEM_NOTE_LENGTH))}
               placeholder={t('specialInstructionsPlaceholder')}
-              maxLength={100}
+              maxLength={MAX_ITEM_NOTE_LENGTH}
               className="w-full min-h-11 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-brand"
             />
             <p className="text-xs text-muted-foreground text-end mt-0.5">
-              {instructions.length}/100
+              {instructions.length}/{MAX_ITEM_NOTE_LENGTH}
             </p>
           </div>
         </div>
 
         <div className="p-5 border-t border-border">
-          <div className="flex items-center justify-center gap-4 mb-4">
+          <div
+            className={`flex items-center justify-center gap-4 mb-4 ${comboSlot ? 'hidden' : ''}`}
+          >
             <button
               onClick={() =>
                 step == null
@@ -561,9 +642,11 @@ export default function AddonModal({
             </button>
           </div>
           <Button onClick={handleAdd} disabled={!isValid} className="w-full" size="lg">
-            {mode === 'edit'
-              ? t('saveItemChanges', { total: fmt(itemTotal) })
-              : t('addToCart', { total: fmt(itemTotal) })}
+            {comboSlot
+              ? t('comboConfirmChoice')
+              : mode === 'edit'
+                ? t('saveItemChanges', { total: fmt(itemTotal) })
+                : t('addToCart', { total: fmt(itemTotal) })}
           </Button>
         </div>
       </div>

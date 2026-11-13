@@ -227,10 +227,12 @@ export function cartLineUnitPrice(
     variant?: ProductVariant | null;
     product: { price: number | string };
     price_override?: { price: number } | null;
+    combo?: { unit_price: number } | null;
   },
   onlinePlatformSelected: boolean,
   decimalsOrCurrency?: number | string,
 ): number {
+  if (item.combo) return item.combo.unit_price;
   return item.price_override
     ? normalizeOverridePrice(item.price_override.price, decimalsOrCurrency)
     : cartVariantUnitPrice(item, onlinePlatformSelected);

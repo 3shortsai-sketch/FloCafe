@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "この端末でシフトがすでに開始されているのにエラーが続く場合のみサポートへご連絡ください。",
     "validationClosedBooksGuidance": "本日の営業日は締め処理済みのため再開できません。新規注文および現金取引は翌営業日に再開されます。",
     "validationClosedBooksEvidenceHint": "店舗の日付またはタイムゾーンが誤っていて本日の営業日が締められている場合のみサポートへご連絡ください。",
-    "validationGenericEvidenceHint": "この入力確認によって正しい操作が拒否されたと思われる場合のみサポートへご連絡ください。"
+    "validationGenericEvidenceHint": "この入力確認によって正しい操作が拒否されたと思われる場合のみサポートへご連絡ください。",
+    "combos": "セットメニュー",
+    "comboConfirmChoice": "この選択で決定",
+    "comboChooseEverySlot": "すべての選択枠で商品を選んでください",
+    "comboUpgradePrompt": "+{extra}で{combo}にしますか？",
+    "comboUpgradeAccept": "セットにする"
   },
   "printTest": {
     "amt": "金額",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "保存するとこのバリアントは無効になり、この画面から復元できません。",
     "variantRemoveAllConfirm": "オフにするとこの商品のすべてのバリアントが無効になります。過去の注文には残ります。",
     "parentCategory": "親カテゴリー",
-    "parentCategoryNone": "なし（最上位）"
+    "parentCategoryNone": "なし（最上位）",
+    "tabCombos": "セットメニュー",
+    "fieldAddonDefault": "初期選択",
+    "combosIntro": "セットメニューは、複数のメニュー商品をまとめて1つの価格で販売します。各商品はそれぞれの在庫から引き当てられ、原価もそれぞれ保持されます。セット価格は、各商品のメニュー価格の比率に応じて按分されます。",
+    "addCombo": "セットを追加",
+    "editCombo": "セットを編集",
+    "combosEmpty": "セットメニューはまだありません",
+    "combosLoadFailed": "セットメニューを読み込めませんでした",
+    "comboSaved": "セットを保存しました",
+    "comboSaveFailed": "セットを保存できませんでした",
+    "comboDeleteConfirm": "セット「{name}」を削除しますか？すでにこのセットを含む注文は変更されません。",
+    "comboName": "セット名",
+    "comboPrice": "セット価格",
+    "comboDescription": "説明（任意）",
+    "comboUpsell": "レジでこのセットを提案する",
+    "comboSlotName": "選択枠の名前",
+    "comboSlotNamePlaceholder": "選択枠の名前（例：ドリンク）",
+    "comboUpcharge": "追加料金",
+    "comboUpchargePlaceholder": "追加料金（任意）",
+    "comboSearchProducts": "追加する商品を検索",
+    "addComboSlot": "選択枠を追加"
   },
   "productAnalytics": {
     "title": "次に何を作るか、一緒に決めてください",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2時間",
     "refundWindow4h": "4時間",
     "refundWindowSameDay": "同一営業日内",
-    "refundOwnerUnlimitedNote": "オーナーはスタッフ承認PINを使用して、過去のどの注文の返金でも常に承認できます。"
+    "refundOwnerUnlimitedNote": "オーナーはスタッフ承認PINを使用して、過去のどの注文の返金でも常に承認できます。",
+    "oneTapModifiers": "ワンタップ追加",
+    "oneTapModifiersHint": "商品に単一選択の項目が1つだけある場合（ソースやサイズなど）、オプションをタップすると商品がそのままカートに追加されます。",
+    "quickNotesTitle": "商品クイックメモ",
+    "quickNotesHint": "レジ係がワンタップで商品に追加できるメモです（例：「ソースなし」「氷少なめ」）。メモを特定のカテゴリに限定することも、すべての商品に表示することもできます。",
+    "quickNotesPlaceholder": "新しいメモ（例：カリカリ多め）",
+    "quickNotesAllItems": "すべての商品に表示。限定先：",
+    "quickNotesOnlyIn": "表示先：",
+    "quickNotesEmpty": "クイックメモはまだありません",
+    "quickNotesSaved": "クイックメモを保存しました",
+    "quickNotesSaveFailed": "クイックメモを保存できませんでした"
   },
   "setup": {
     "alreadyCompleted": "このインストールではセットアップが完了しています。ログインへ移動します…",

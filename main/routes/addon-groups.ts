@@ -190,6 +190,19 @@ function applyAddonStockAdjustment(
   });
 }
 
+/** Only touches the flag when the caller sent it, so an omitted field keeps the stored value. */
+function applyAddonDefault(
+  db: ReturnType<typeof getDatabase>,
+  addonId: string,
+  addon: Record<string, unknown> | null | undefined,
+): void {
+  if (!hasOwn(addon ?? {}, 'is_default')) return;
+  db.prepare('UPDATE addons SET is_default = ? WHERE id = ?').run(
+    normalizeBoolean(addon?.is_default, false) ? 1 : 0,
+    addonId,
+  );
+}
+
 function validationErrorResponse(res: Response, errors: FieldErrors): Response | null {
   if (Object.keys(errors).length === 0) return null;
   captureAddonGroupInputValidation();
@@ -203,6 +216,7 @@ function serializeAddon(addon: any): any {
     is_active: toBoolean(addon.is_active),
     inherit_parent_tax_category: toBoolean(addon.inherit_parent_tax_category),
     track_inventory: toBoolean(addon.track_inventory),
+    is_default: toBoolean(addon.is_default),
     stock_quantity: Number(addon.stock_quantity ?? 0),
     low_stock_threshold: Number(addon.low_stock_threshold ?? 0),
   };
@@ -474,6 +488,7 @@ router.post(
               now(),
               now(),
             );
+            applyAddonDefault(db, addonId, addon);
             if (addon.has_stock_quantity) {
               applyAddonStockAdjustment(
                 db,
@@ -692,6 +707,7 @@ router.put(
             } else {
               insertAddon.run(addonId, req.params.id, ...values.slice(0, -1), now(), now());
             }
+            applyAddonDefault(db, addonId, addon);
             if (addon.has_stock_quantity) {
               applyAddonStockAdjustment(
                 db,
@@ -850,6 +866,7 @@ router.post(
           now(),
           now(),
         );
+        applyAddonDefault(db, addonId, req.body);
         if (inventory.hasStockQuantity) {
           applyAddonStockAdjustment(
             db,
@@ -972,6 +989,7 @@ router.put(
           addonSort,
           req.params.addonId,
         );
+        applyAddonDefault(db, req.params.addonId as string, req.body);
         if (inventory.hasStockQuantity) {
           applyAddonStockAdjustment(
             db,
