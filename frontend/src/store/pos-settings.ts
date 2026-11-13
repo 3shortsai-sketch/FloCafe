@@ -18,6 +18,8 @@ export function normalizeAutoLockMinutesValue(value: unknown): AutoLockMinutes {
 
 export interface PosSettingsState {
   showProductImages: boolean;
+  /** Adds an item on the first tap when its only choice is a single pick-one group. */
+  oneTapModifiers: boolean;
   customerMandatory: boolean;
   // Auto-advances phone to name when typed digits form a valid number.
   enforcePhoneLength: boolean;
@@ -72,6 +74,7 @@ export interface PosSettingsState {
   autoLockMinutes: AutoLockMinutes;
   // Actions
   setShowProductImages: (show: boolean) => void;
+  setOneTapModifiers: (enabled: boolean) => void;
   setCustomerMandatory: (mandatory: boolean) => void;
   setEnforcePhoneLength: (enabled: boolean) => void;
   setAutoLockMinutes: (minutes: AutoLockMinutes) => void;
@@ -161,6 +164,7 @@ export const usePosSettingsStore = create<PosSettingsState>()(
   persist(
     (set) => ({
       showProductImages: true,
+      oneTapModifiers: false,
       customerMandatory: false,
       enforcePhoneLength: false,
       billingType: 'postpaid',
@@ -210,6 +214,7 @@ export const usePosSettingsStore = create<PosSettingsState>()(
       autoLockMinutes: 0,
       // Actions
       setShowProductImages: (show) => set({ showProductImages: show }),
+      setOneTapModifiers: (enabled) => set({ oneTapModifiers: enabled }),
       setCustomerMandatory: (mandatory) => set({ customerMandatory: mandatory }),
       setEnforcePhoneLength: (enabled) => set({ enforcePhoneLength: enabled }),
       setAutoLockMinutes: (autoLockMinutes) =>

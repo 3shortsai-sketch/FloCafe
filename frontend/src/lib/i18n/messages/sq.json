@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Kontaktoni mbështetjen vetëm nëse një turn është tashmë i hapur në këtë terminal dhe ky gabim vazhdon.",
     "validationClosedBooksGuidance": "Dita e sotme e punës është mbyllur dhe nuk mund të rihapet. Porositë e reja dhe veprimet me para në dorë rifillojnë ditën tjetër të punës.",
     "validationClosedBooksEvidenceHint": "Kontaktoni mbështetjen vetëm nëse dita e sotme e punës shfaqet e mbyllur në datën ose zonën kohore të gabuar të dyqanit.",
-    "validationGenericEvidenceHint": "Kontaktoni mbështetjen vetëm nëse mendoni se ky kontroll verifikimi refuzoi një kërkesë të vlefshme."
+    "validationGenericEvidenceHint": "Kontaktoni mbështetjen vetëm nëse mendoni se ky kontroll verifikimi refuzoi një kërkesë të vlefshme.",
+    "combos": "Kombo",
+    "comboConfirmChoice": "Përdor këtë zgjedhje",
+    "comboChooseEverySlot": "Zgjidh një artikull për çdo zgjedhje",
+    "comboUpgradePrompt": "Ta bëjmë {combo} për +{extra}?",
+    "comboUpgradeAccept": "Përmirëso"
   },
   "printTest": {
     "amt": "Shuma",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Ky variant do të çaktivizohet kur ruhet dhe nuk mund të rikthehet nga ky ekran.",
     "variantRemoveAllConfirm": "Nëse e çaktivizoni, do të çaktivizohen të gjitha variantet e këtij produkti. Porositë e vjetra i ruajnë.",
     "parentCategory": "Kategoria prind",
-    "parentCategoryNone": "Asnjë (niveli kryesor)"
+    "parentCategoryNone": "Asnjë (niveli kryesor)",
+    "tabCombos": "Kombo",
+    "fieldAddonDefault": "Parazgjedhur",
+    "combosIntro": "Një kombo shet disa artikuj të menusë së bashku me një çmim të vetëm. Çdo artikull vazhdon të zbresë stokun e vet dhe të ruajë koston e vet, ndërsa çmimi i kombos ndahet ndërmjet artikujve në përpjesëtim me çmimet e tyre në menu.",
+    "addCombo": "Shto kombo",
+    "editCombo": "Ndrysho kombon",
+    "combosEmpty": "Ende nuk ka kombo",
+    "combosLoadFailed": "Kombot nuk u ngarkuan",
+    "comboSaved": "Kombo u ruajt",
+    "comboSaveFailed": "Kombo nuk u ruajt",
+    "comboDeleteConfirm": "Të fshihet kombo \"{name}\"? Porositë që e përfshijnë tashmë nuk ndryshohen.",
+    "comboName": "Emri i kombos",
+    "comboPrice": "Çmimi i kombos",
+    "comboDescription": "Përshkrimi (opsional)",
+    "comboUpsell": "Sugjeroje këtë kombo në arkë",
+    "comboSlotName": "Emri i zgjedhjes",
+    "comboSlotNamePlaceholder": "Emri i zgjedhjes, p.sh. Pije",
+    "comboUpcharge": "Tarifë shtesë",
+    "comboUpchargePlaceholder": "Shtesë (opsionale)",
+    "comboSearchProducts": "Kërko produkte për të shtuar",
+    "addComboSlot": "Shto zgjedhje"
   },
   "productAnalytics": {
     "title": "Na ndihmoni të vendosim çfarë të ndërtojmë më pas",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 orë",
     "refundWindow4h": "4 orë",
     "refundWindowSameDay": "E njëjta ditë pune",
-    "refundOwnerUnlimitedNote": "Pronarët mund të miratojnë gjithmonë rimbursime për çdo porosi të kaluar me PIN-in e tyre të miratimit të stafit."
+    "refundOwnerUnlimitedNote": "Pronarët mund të miratojnë gjithmonë rimbursime për çdo porosi të kaluar me PIN-in e tyre të miratimit të stafit.",
+    "oneTapModifiers": "Shtim me një prekje",
+    "oneTapModifiersHint": "Kur një artikull ka vetëm një zgjedhje me një opsion të vetëm (si salcë ose madhësi), prekja e opsionit e shton artikullin drejtpërdrejt në karrocë.",
+    "quickNotesTitle": "Shënime të shpejta për artikujt",
+    "quickNotesHint": "Shënime që kasieri mund t'i shtojë një artikulli me një prekje, si \"Pa salcë\" ose \"Pak akull\". Kufizoje një shënim në kategori të caktuara, ose lëre për çdo artikull.",
+    "quickNotesPlaceholder": "Shënim i ri, p.sh. Shumë krokant",
+    "quickNotesAllItems": "Shfaqet në çdo artikull. Kufizo në:",
+    "quickNotesOnlyIn": "Shfaqet vetëm në:",
+    "quickNotesEmpty": "Ende nuk ka shënime të shpejta",
+    "quickNotesSaved": "Shënimet e shpejta u ruajtën",
+    "quickNotesSaveFailed": "Shënimet e shpejta nuk u ruajtën"
   },
   "setup": {
     "alreadyCompleted": "Konfigurimi në këtë instalim është përfunduar. Po ridrejtohemi te hyrja...",

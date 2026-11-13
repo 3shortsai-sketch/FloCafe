@@ -10381,6 +10381,52 @@ export const MIGRATIONS: { version: number; name: string; up: () => void }[] = [
       }
     },
   },
+  {
+    version: 126,
+    name: 'add_combos_addon_defaults_quick_notes',
+    up: () => {
+      db.exec(`
+        CREATE TABLE IF NOT EXISTS combos (
+          id TEXT PRIMARY KEY,
+          name TEXT NOT NULL,
+          description TEXT,
+          price REAL NOT NULL DEFAULT 0 CHECK (price >= 0),
+          image_url TEXT,
+          is_active INTEGER NOT NULL DEFAULT 1,
+          upsell_enabled INTEGER NOT NULL DEFAULT 1,
+          sort_order INTEGER NOT NULL DEFAULT 0,
+          deleted_at TEXT,
+          created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+          updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+        );
+        CREATE TABLE IF NOT EXISTS combo_slots (
+          id TEXT PRIMARY KEY,
+          combo_id TEXT NOT NULL REFERENCES combos(id) ON DELETE CASCADE,
+          name TEXT NOT NULL,
+          sort_order INTEGER NOT NULL DEFAULT 0
+        );
+        CREATE INDEX IF NOT EXISTS idx_combo_slots_combo ON combo_slots(combo_id, sort_order);
+        CREATE TABLE IF NOT EXISTS combo_slot_options (
+          slot_id TEXT NOT NULL REFERENCES combo_slots(id) ON DELETE CASCADE,
+          product_id TEXT NOT NULL REFERENCES products(id),
+          upcharge REAL NOT NULL DEFAULT 0 CHECK (upcharge >= 0),
+          sort_order INTEGER NOT NULL DEFAULT 0,
+          PRIMARY KEY (slot_id, product_id)
+        );
+        CREATE INDEX IF NOT EXISTS idx_combo_slot_options_product ON combo_slot_options(product_id);
+      `);
+      const itemColumns = getColumns(db, 'order_items');
+      for (const column of ['combo_id', 'combo_name', 'combo_group']) {
+        if (!itemColumns.includes(column)) {
+          db.exec(`ALTER TABLE order_items ADD COLUMN ${column} TEXT DEFAULT NULL`);
+        }
+      }
+      if (!getColumns(db, 'addons').includes('is_default')) {
+        db.exec('ALTER TABLE addons ADD COLUMN is_default INTEGER NOT NULL DEFAULT 0');
+      }
+      insertSettingIfMissing('quick_notes', '[]');
+    },
+  },
 ];
 
 export function backfillWhatsAppMessageAttempts(

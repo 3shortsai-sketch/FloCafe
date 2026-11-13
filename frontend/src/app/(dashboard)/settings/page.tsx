@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
+import QuickNotesSettings from '@/components/settings/QuickNotesSettings';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuthStore } from '@/store/auth';
@@ -4930,7 +4931,24 @@ export default function SettingsPage() {
                     }}
                   />
                 </div>
+                <div className="mt-4 flex items-center justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-foreground">{t('oneTapModifiers')}</p>
+                    <p className="text-sm text-muted-foreground">{t('oneTapModifiersHint')}</p>
+                  </div>
+                  <Toggle
+                    value={posSettings.oneTapModifiers}
+                    label={t('oneTapModifiers')}
+                    disabled={!isAdmin}
+                    onChange={(v) => {
+                      if (!isAdmin) return;
+                      posSettings.setOneTapModifiers(v);
+                    }}
+                  />
+                </div>
               </div>
+
+              <QuickNotesSettings canEdit={isAdmin} />
 
               {/* POS Workflow */}
               <div

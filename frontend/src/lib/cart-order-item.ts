@@ -23,13 +23,20 @@ export interface OrderItemPayload {
   addons: OrderItemAddonPayload[] | null;
   special_instructions: string | null;
   price_override?: { price: number; reason: string };
+  combo?: { combo_id: string; group_key: string; slot_id: string };
 }
 
 /** The cart-item fields a payload is built from; callers holding a staged or
  * draft line pass the same shape without a cart identity. */
 export type OrderItemSource = Pick<
   CartItem,
-  'product' | 'quantity' | 'addons' | 'special_instructions' | 'variant' | 'price_override'
+  | 'product'
+  | 'quantity'
+  | 'addons'
+  | 'special_instructions'
+  | 'variant'
+  | 'price_override'
+  | 'combo'
 >;
 
 export function cartItemToOrderItem(item: OrderItemSource): OrderItemPayload {
@@ -47,6 +54,15 @@ export function cartItemToOrderItem(item: OrderItemSource): OrderItemPayload {
           }))
         : null,
     special_instructions: item.special_instructions || null,
+    ...(item.combo
+      ? {
+          combo: {
+            combo_id: item.combo.combo_id,
+            group_key: item.combo.group_key,
+            slot_id: item.combo.slot_id,
+          },
+        }
+      : {}),
     ...(item.price_override
       ? {
           price_override: {

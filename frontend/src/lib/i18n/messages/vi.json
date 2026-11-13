@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Chỉ liên hệ hỗ trợ nếu thiết bị này đã mở ca nhưng lỗi vẫn tiếp diễn.",
     "validationClosedBooksGuidance": "Ngày kinh doanh hôm nay đã chốt và không thể mở lại. Đơn hàng mới và giao dịch tiền mặt sẽ tiếp tục vào ngày kinh doanh tiếp theo.",
     "validationClosedBooksEvidenceHint": "Chỉ liên hệ hỗ trợ nếu ngày kinh doanh hôm nay hiển thị đã chốt sai ngày hoặc sai múi giờ của cửa hàng.",
-    "validationGenericEvidenceHint": "Chỉ liên hệ hỗ trợ nếu bạn cho rằng bước kiểm tra này đã từ chối một yêu cầu hợp lệ."
+    "validationGenericEvidenceHint": "Chỉ liên hệ hỗ trợ nếu bạn cho rằng bước kiểm tra này đã từ chối một yêu cầu hợp lệ.",
+    "combos": "Combo",
+    "comboConfirmChoice": "Dùng lựa chọn này",
+    "comboChooseEverySlot": "Hãy chọn một món cho mỗi lựa chọn",
+    "comboUpgradePrompt": "Đổi thành {combo} với +{extra}?",
+    "comboUpgradeAccept": "Nâng cấp"
   },
   "printTest": {
     "amt": "Số tiền",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Biến thể này sẽ bị vô hiệu hóa khi lưu và không thể khôi phục từ màn hình này.",
     "variantRemoveAllConfirm": "Tắt mục này sẽ vô hiệu hóa mọi biến thể của sản phẩm này. Các đơn hàng cũ vẫn giữ chúng.",
     "parentCategory": "Danh mục cha",
-    "parentCategoryNone": "Không có (Cấp cao nhất)"
+    "parentCategoryNone": "Không có (Cấp cao nhất)",
+    "tabCombos": "Combo",
+    "fieldAddonDefault": "Mặc định",
+    "combosIntro": "Combo bán nhiều món trong thực đơn cùng nhau với một mức giá. Mỗi món vẫn trừ tồn kho riêng và giữ giá vốn riêng, còn giá combo được phân bổ cho các món theo tỷ lệ giá thực đơn của chúng.",
+    "addCombo": "Thêm combo",
+    "editCombo": "Sửa combo",
+    "combosEmpty": "Chưa có combo nào",
+    "combosLoadFailed": "Không thể tải combo",
+    "comboSaved": "Đã lưu combo",
+    "comboSaveFailed": "Không thể lưu combo",
+    "comboDeleteConfirm": "Xoá combo \"{name}\"? Các đơn hàng đã có combo này sẽ không bị thay đổi.",
+    "comboName": "Tên combo",
+    "comboPrice": "Giá combo",
+    "comboDescription": "Mô tả (không bắt buộc)",
+    "comboUpsell": "Gợi ý combo này tại quầy",
+    "comboSlotName": "Tên lựa chọn",
+    "comboSlotNamePlaceholder": "Tên lựa chọn, ví dụ: Đồ uống",
+    "comboUpcharge": "Phụ thu",
+    "comboUpchargePlaceholder": "Phụ thu (không bắt buộc)",
+    "comboSearchProducts": "Tìm sản phẩm để thêm",
+    "addComboSlot": "Thêm lựa chọn"
   },
   "productAnalytics": {
     "title": "Giúp chúng tôi quyết định nên làm gì tiếp theo",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 giờ",
     "refundWindow4h": "4 giờ",
     "refundWindowSameDay": "Cùng ngày kinh doanh",
-    "refundOwnerUnlimitedNote": "Chủ quán luôn có thể phê duyệt hoàn tiền cho bất kỳ đơn hàng cũ nào bằng mã PIN phê duyệt của mình."
+    "refundOwnerUnlimitedNote": "Chủ quán luôn có thể phê duyệt hoàn tiền cho bất kỳ đơn hàng cũ nào bằng mã PIN phê duyệt của mình.",
+    "oneTapModifiers": "Thêm bằng một chạm",
+    "oneTapModifiersHint": "Khi một món chỉ có một nhóm chọn một (như nước sốt hoặc kích cỡ), chạm vào tuỳ chọn sẽ thêm món thẳng vào giỏ.",
+    "quickNotesTitle": "Ghi chú nhanh cho món",
+    "quickNotesHint": "Ghi chú mà thu ngân có thể thêm vào món chỉ với một chạm, như \"Không sốt\" hoặc \"Ít đá\". Giới hạn ghi chú cho một số danh mục, hoặc để áp dụng cho mọi món.",
+    "quickNotesPlaceholder": "Ghi chú mới, ví dụ: Thật giòn",
+    "quickNotesAllItems": "Hiển thị cho mọi món. Giới hạn trong:",
+    "quickNotesOnlyIn": "Chỉ hiển thị trong:",
+    "quickNotesEmpty": "Chưa có ghi chú nhanh nào",
+    "quickNotesSaved": "Đã lưu ghi chú nhanh",
+    "quickNotesSaveFailed": "Không thể lưu ghi chú nhanh"
   },
   "setup": {
     "alreadyCompleted": "Bản cài đặt này đã hoàn tất thiết lập. Đang chuyển đến đăng nhập…",

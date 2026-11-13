@@ -35,6 +35,7 @@ import type { Table, Order, OrderItem, CartItem } from '@/lib/types';
 import { useFormatCurrency } from '@/hooks/useFormatCurrency';
 import { fractionalQuantityStep, roundToQuantityPrecision } from '@/lib/utils';
 import { cartLineUnitPrice, cartVariantUnitPrice } from '@/lib/cart-price';
+import { groupCartRows } from '@/lib/combos';
 import { tenantCan } from '@/lib/permissions';
 import { CartPriceOverrideModal } from '@/components/pos/CartPriceOverrideModal';
 import { OrderDetailsDrawer } from '@/components/pos/OrderDetailsDrawer';
@@ -338,6 +339,111 @@ export default function CartPanel({
     t('orderNotesPlaceholder')
       .replace(/\s*\([^)]*\)\s*$/, '')
       .trim() || t('orderNotesPlaceholder');
+
+  const renderCartLine = (item: CartItem, inCombo: boolean) => {
+    const onlineSelected = cart.orderType === 'online' && cart.onlinePlatform.trim().length > 0;
+    const unitPrice = cartLineUnitPrice(item, onlineSelected);
+    const addonUnitTotal = item.addons.reduce(
+      (sum, a) => sum + Number(a.price) * (a.quantity || 1),
+      0,
+    );
+    const effectiveUnitPrice = unitPrice + addonUnitTotal;
+    const lineTotal = effectiveUnitPrice * item.quantity;
+    const hasSubtext = item.addons.length > 0 || Boolean(item.special_instructions);
+    return (
+      <div
+        key={item.id}
+        data-testid="cart-item"
+        className={inCombo ? 'ps-6 pt-1' : 'py-1.5 first:pt-0 last:pb-0'}
+      >
+        <div className="flex items-center justify-between gap-2">
+          {inCombo ? null : (
+            <button
+              type="button"
+              data-testid="cart-item-remove-btn"
+              onClick={() => cart.removeItem(item.id)}
+              className="touch-target h-7 w-7 min-h-7 min-w-7 shrink-0 rounded-md text-red-500 dark:text-red-400 transition-colors hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/40 dark:hover:text-red-300 active:bg-red-100 dark:active:bg-red-950/60"
+              aria-label={t('remove')}
+              title={t('remove')}
+            >
+              <Trash2 size={13} />
+            </button>
+          )}
+          <p className="min-w-0 flex-1 break-words text-sm font-medium leading-snug text-foreground">
+            {item.variant ? `${item.product.name} (${item.variant.name})` : item.product.name}
+          </p>
+          <div className={`flex items-baseline gap-1.5 shrink-0 ${inCombo ? 'hidden' : ''}`}>
+            {item.quantity > 1 && (
+              <span className="text-[11px] text-muted-foreground tabular-nums">
+                {fmt(effectiveUnitPrice)}
+              </span>
+            )}
+            <span className="text-sm font-semibold tabular-nums text-foreground">
+              {fmt(lineTotal)}
+            </span>
+          </div>
+        </div>
+        <div className="mt-0.5 flex items-center justify-between gap-2">
+          <div className="min-w-0 flex-1">
+            {item.price_override && (
+              <p className="text-xs text-amber-600 dark:text-amber-400 leading-snug break-words">
+                {tOrders('priceOverriddenMenu', {
+                  price: fmt(cartVariantUnitPrice(item, onlineSelected)),
+                })}
+              </p>
+            )}
+            {hasSubtext && (
+              <p className="text-xs text-muted-foreground leading-snug break-words">
+                {item.addons.map((a, idx) => (
+                  <span key={a.id}>
+                    {idx > 0 && ' · '}
+                    {`+ ${a.name}${(a.quantity || 1) > 1 ? ` ×${a.quantity}` : ''}${
+                      Number(a.price) > 0 ? ` (${fmt(Number(a.price) * (a.quantity || 1))})` : ''
+                    }`}
+                  </span>
+                ))}
+                {item.special_instructions && (
+                  <>
+                    {item.addons.length > 0 && ' · '}
+                    <span className="italic">{item.special_instructions}</span>
+                  </>
+                )}
+              </p>
+            )}
+          </div>
+          <div className="ms-auto flex items-center gap-1.5 shrink-0">
+            {canOverridePrice && !inCombo && (
+              <button
+                type="button"
+                onClick={() => setPriceOverrideItemId(item.id)}
+                className="touch-target h-7 w-7 min-h-7 min-w-7 shrink-0 rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground active:bg-muted"
+                aria-label={tOrders('overridePrice')}
+                title={tOrders('overridePrice')}
+              >
+                <Tag size={13} />
+              </button>
+            )}
+            {onEditItem && (
+              <button
+                type="button"
+                onClick={() => onEditItem(item)}
+                className="touch-target h-7 w-7 min-h-7 min-w-7 shrink-0 rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground active:bg-muted"
+                aria-label={tCommon('edit')}
+                title={tCommon('edit')}
+              >
+                <SquarePen size={13} />
+              </button>
+            )}
+            {!inCombo && (
+              <div className="inline-flex items-center rounded-full border border-border bg-muted/50 p-0.5">
+                <ItemQuantityControl item={item} updateQuantity={cart.updateQuantity} />
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div
@@ -739,104 +845,49 @@ export default function CartPanel({
           </div>
         ) : (
           <div className="divide-y divide-border/60">
-            {cart.items.map((item) => {
+            {groupCartRows(cart.items).map((row) => {
+              if (row.kind === 'item') return renderCartLine(row.item, false);
               const onlineSelected =
                 cart.orderType === 'online' && cart.onlinePlatform.trim().length > 0;
-              const unitPrice = cartLineUnitPrice(item, onlineSelected);
-              const addonUnitTotal = item.addons.reduce(
-                (sum, a) => sum + Number(a.price) * (a.quantity || 1),
+              const comboTotal = row.items.reduce(
+                (sum, line) =>
+                  sum +
+                  (cartLineUnitPrice(line, onlineSelected) +
+                    line.addons.reduce((acc, a) => acc + Number(a.price) * (a.quantity || 1), 0)) *
+                    line.quantity,
                 0,
               );
-              const effectiveUnitPrice = unitPrice + addonUnitTotal;
-              const lineTotal = effectiveUnitPrice * item.quantity;
-              const hasSubtext = item.addons.length > 0 || Boolean(item.special_instructions);
               return (
-                <div key={item.id} data-testid="cart-item" className="py-1.5 first:pt-0 last:pb-0">
+                <div
+                  key={row.groupKey}
+                  data-testid="cart-combo"
+                  className="py-1.5 first:pt-0 last:pb-0"
+                >
                   <div className="flex items-center justify-between gap-2">
                     <button
                       type="button"
-                      data-testid="cart-item-remove-btn"
-                      onClick={() => cart.removeItem(item.id)}
+                      data-testid="cart-combo-remove-btn"
+                      onClick={() => cart.removeItem(row.items[0].id)}
                       className="touch-target h-7 w-7 min-h-7 min-w-7 shrink-0 rounded-md text-red-500 dark:text-red-400 transition-colors hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/40 dark:hover:text-red-300 active:bg-red-100 dark:active:bg-red-950/60"
                       aria-label={t('remove')}
                       title={t('remove')}
                     >
                       <Trash2 size={13} />
                     </button>
-                    <p className="min-w-0 flex-1 break-words text-sm font-medium leading-snug text-foreground">
-                      {item.variant
-                        ? `${item.product.name} (${item.variant.name})`
-                        : item.product.name}
+                    <p className="min-w-0 flex-1 break-words text-sm font-semibold leading-snug text-foreground">
+                      {row.name}
                     </p>
-                    <div className="flex items-baseline gap-1.5 shrink-0">
-                      {item.quantity > 1 && (
-                        <span className="text-[11px] text-muted-foreground tabular-nums">
-                          {fmt(effectiveUnitPrice)}
-                        </span>
-                      )}
-                      <span className="text-sm font-semibold tabular-nums text-foreground">
-                        {fmt(lineTotal)}
-                      </span>
+                    <span className="text-sm font-semibold tabular-nums text-foreground shrink-0">
+                      {fmt(comboTotal)}
+                    </span>
+                    <div className="inline-flex items-center rounded-full border border-border bg-muted/50 p-0.5">
+                      <ItemQuantityControl
+                        item={row.items[0]}
+                        updateQuantity={cart.updateQuantity}
+                      />
                     </div>
                   </div>
-                  <div className="mt-0.5 flex items-center justify-between gap-2">
-                    <div className="min-w-0 flex-1">
-                      {item.price_override && (
-                        <p className="text-xs text-amber-600 dark:text-amber-400 leading-snug break-words">
-                          {tOrders('priceOverriddenMenu', {
-                            price: fmt(cartVariantUnitPrice(item, onlineSelected)),
-                          })}
-                        </p>
-                      )}
-                      {hasSubtext && (
-                        <p className="text-xs text-muted-foreground leading-snug break-words">
-                          {item.addons.map((a, idx) => (
-                            <span key={a.id}>
-                              {idx > 0 && ' · '}
-                              {`+ ${a.name}${(a.quantity || 1) > 1 ? ` ×${a.quantity}` : ''}${
-                                Number(a.price) > 0
-                                  ? ` (${fmt(Number(a.price) * (a.quantity || 1))})`
-                                  : ''
-                              }`}
-                            </span>
-                          ))}
-                          {item.special_instructions && (
-                            <>
-                              {item.addons.length > 0 && ' · '}
-                              <span className="italic">{item.special_instructions}</span>
-                            </>
-                          )}
-                        </p>
-                      )}
-                    </div>
-                    <div className="ms-auto flex items-center gap-1.5 shrink-0">
-                      {canOverridePrice && (
-                        <button
-                          type="button"
-                          onClick={() => setPriceOverrideItemId(item.id)}
-                          className="touch-target h-7 w-7 min-h-7 min-w-7 shrink-0 rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground active:bg-muted"
-                          aria-label={tOrders('overridePrice')}
-                          title={tOrders('overridePrice')}
-                        >
-                          <Tag size={13} />
-                        </button>
-                      )}
-                      {onEditItem && (
-                        <button
-                          type="button"
-                          onClick={() => onEditItem(item)}
-                          className="touch-target h-7 w-7 min-h-7 min-w-7 shrink-0 rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground active:bg-muted"
-                          aria-label={tCommon('edit')}
-                          title={tCommon('edit')}
-                        >
-                          <SquarePen size={13} />
-                        </button>
-                      )}
-                      <div className="inline-flex items-center rounded-full border border-border bg-muted/50 p-0.5">
-                        <ItemQuantityControl item={item} updateQuantity={cart.updateQuantity} />
-                      </div>
-                    </div>
-                  </div>
+                  {row.items.map((line) => renderCartLine(line, true))}
                 </div>
               );
             })}

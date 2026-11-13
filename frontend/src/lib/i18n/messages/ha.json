@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Tuntuɓi tallafi kawai idan an riga an buɗe shift a wannan na'urar kuma wannan kuskuren ya ci gaba.",
     "validationClosedBooksGuidance": "An rufe ranar kasuwanci ta yau kuma ba za a iya sake buɗe ta ba. Sabbin ododi da hada-hadar tsabar kuɗi za su ci gaba a ranar kasuwanci ta gaba.",
     "validationClosedBooksEvidenceHint": "Tuntuɓi tallafi kawai idan ranar kasuwanci ta yau ta nuna a rufe a kwanan wata ko yankin lokaci marar daidai.",
-    "validationGenericEvidenceHint": "Tuntuɓi tallafi kawai idan kuna ganin wannan tantancewar ta ƙi amsar ingantacciyar buƙata."
+    "validationGenericEvidenceHint": "Tuntuɓi tallafi kawai idan kuna ganin wannan tantancewar ta ƙi amsar ingantacciyar buƙata.",
+    "combos": "Haɗin Abinci",
+    "comboConfirmChoice": "Yi amfani da wannan zaɓi",
+    "comboChooseEverySlot": "Zaɓi abu ɗaya don kowane zaɓi",
+    "comboUpgradePrompt": "A mai da shi {combo} kan +{extra}?",
+    "comboUpgradeAccept": "Canza"
   },
   "printTest": {
     "amt": "Kuɗi",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Za a kashe wannan nau'in idan an adana kuma ba za a iya maido da shi daga wannan allon ba.",
     "variantRemoveAllConfirm": "Kashe wannan yana kashe kowane nau'i na wannan samfurin. Ododin baya za su ci gaba da riƙe su.",
     "parentCategory": "Babban Rukuni",
-    "parentCategoryNone": "Babu (Matakin farko)"
+    "parentCategoryNone": "Babu (Matakin farko)",
+    "tabCombos": "Haɗin Abinci",
+    "fieldAddonDefault": "Na asali",
+    "combosIntro": "Haɗin abinci yana sayar da kayayyaki da dama na menu tare a farashi ɗaya. Kowane abu yana ci gaba da rage nasa kayan ajiya kuma yana riƙe nasa kuɗin sayo, kuma ana raba farashin haɗin a tsakanin kayayyakin gwargwadon farashinsu na menu.",
+    "addCombo": "Ƙara haɗin abinci",
+    "editCombo": "Gyara haɗin abinci",
+    "combosEmpty": "Babu haɗin abinci tukuna",
+    "combosLoadFailed": "Ba a iya loda haɗin abinci ba",
+    "comboSaved": "An adana haɗin abinci",
+    "comboSaveFailed": "Ba a iya adana haɗin abincin ba",
+    "comboDeleteConfirm": "A share haɗin abinci \"{name}\"? Odar da ta riga ta ƙunshe shi ba za a canza ta ba.",
+    "comboName": "Sunan haɗin abinci",
+    "comboPrice": "Farashin haɗin abinci",
+    "comboDescription": "Bayani (na zaɓi)",
+    "comboUpsell": "Ba da shawarar wannan haɗin abinci a wurin biya",
+    "comboSlotName": "Sunan zaɓi",
+    "comboSlotNamePlaceholder": "Sunan zaɓi, misali Abin sha",
+    "comboUpcharge": "Ƙarin kuɗi",
+    "comboUpchargePlaceholder": "Ƙari (na zaɓi)",
+    "comboSearchProducts": "Bincika kayayyakin da za a ƙara",
+    "addComboSlot": "Ƙara zaɓi"
   },
   "productAnalytics": {
     "title": "Taimaka mana mu yanke shawarar abin da za mu gina na gaba",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "Awanni 2",
     "refundWindow4h": "Awanni 4",
     "refundWindowSameDay": "Rana ɗaya ta kasuwanci",
-    "refundOwnerUnlimitedNote": "Masu shago za su iya amincewa da mayar da kuɗi a kowane lokaci don kowace tsohuwar oda da PIN ɗinsu na amincewa."
+    "refundOwnerUnlimitedNote": "Masu shago za su iya amincewa da mayar da kuɗi a kowane lokaci don kowace tsohuwar oda da PIN ɗinsu na amincewa.",
+    "oneTapModifiers": "Ƙarawa da taɓawa ɗaya",
+    "oneTapModifiersHint": "Idan abu yana da zaɓi ɗaya tilo na ɗauki-ɗaya (kamar miya ko girma), taɓa zaɓin zai saka abun kai tsaye a kwando.",
+    "quickNotesTitle": "Gajerun bayanan abu",
+    "quickNotesHint": "Bayanan da mai karɓar kuɗi zai iya ƙarawa ga abu da taɓawa ɗaya, kamar \"Babu miya\" ko \"Ƙanƙara kaɗan\". Iyakance bayani ga wasu rukunai, ko ka bar shi ga kowane abu.",
+    "quickNotesPlaceholder": "Sabon bayani, misali Soya sosai",
+    "quickNotesAllItems": "Ana nunawa a kowane abu. Iyakance ga:",
+    "quickNotesOnlyIn": "Ana nunawa ne kawai a:",
+    "quickNotesEmpty": "Babu gajerun bayanai tukuna",
+    "quickNotesSaved": "An adana gajerun bayanai",
+    "quickNotesSaveFailed": "Ba a iya adana gajerun bayanai ba"
   },
   "setup": {
     "alreadyCompleted": "An riga an kammala saitin farko a wannan manhajar da aka girka. Ana turawa zuwa shafin shiga…",

@@ -1,4 +1,4 @@
-import type { Addon, CartItem } from './types';
+import type { Addon, CartComboRef, CartItem } from './types';
 import { normalizeOverridePrice } from './cart-price';
 
 /** Serializes cart identity into a typed, sorted canonical representation. */
@@ -64,6 +64,7 @@ export function generateCartItemId(
   addons: Addon[],
   specialInstructions: string,
   priceOverride?: { price: number; reason: string } | null,
+  combo?: Pick<CartComboRef, 'group_key' | 'slot_id'> | null,
 ): string {
   const normalizedAddons = addons.map((addon) => ({
     ...addon,
@@ -77,7 +78,7 @@ export function generateCartItemId(
     return 0;
   });
 
-  return `cart-v3:${lineDigest(canonicalize({ productId, variantId, addons: sortedAddons, specialInstructions, ...(priceOverride ? { priceOverride: { price: normalizeOverridePrice(priceOverride.price), reason: priceOverride.reason } } : {}) }))}`;
+  return `cart-v3:${lineDigest(canonicalize({ productId, variantId, addons: sortedAddons, specialInstructions, ...(priceOverride ? { priceOverride: { price: normalizeOverridePrice(priceOverride.price), reason: priceOverride.reason } } : {}), ...(combo ? { combo: { group: combo.group_key, slot: combo.slot_id } } : {}) }))}`;
 }
 
 /** Normalize persisted/held cart lines to the current identity format. */
@@ -96,6 +97,7 @@ export function normalizeCartItems(items: CartItem[]): CartItem[] {
       item.addons || [],
       item.special_instructions || '',
       normalizedOverride,
+      item.combo,
     );
     const existing = normalized.find((candidate) => candidate.id === id);
     if (existing) {

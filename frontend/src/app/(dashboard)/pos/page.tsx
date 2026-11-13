@@ -18,6 +18,8 @@ import type {
   Bill,
   Order,
   CartItem,
+  Combo,
+  QuickNote,
 } from '@/lib/types';
 import { cartItemToOrderItem } from '@/lib/cart-order-item';
 import { useConfirm } from '@/hooks/use-confirm';
@@ -26,6 +28,11 @@ import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import ProductGrid from '@/components/pos/ProductGrid';
 import CartPanel from '@/components/pos/CartPanel';
 import AddonModal from '@/components/pos/AddonModal';
+import ComboModal from '@/components/pos/ComboModal';
+import { ComboStrip, ComboUpgradeBanner } from '@/components/pos/ComboStrip';
+import { findComboUpgrade, quickNotesForProduct, type ComboPick } from '@/lib/combos';
+import { generateCartItemId } from '@/lib/cart-identity';
+import { cartVariantUnitPrice } from '@/lib/cart-price';
 import CustomerSearch from '@/components/pos/CustomerSearch';
 import TablePickerModal from '@/components/pos/TablePickerModal';
 import TableCheckoutModal from '@/components/pos/TableCheckoutModal';
@@ -320,6 +327,35 @@ export default function POSPage() {
   // The variant a scanned barcode named, preselected in the customizer.
   const [addonInitialVariant, setAddonInitialVariant] = useState<ProductVariant | null>(null);
   const [editingCartItem, setEditingCartItem] = useState<CartItem | null>(null);
+  const [combos, setCombos] = useState<Combo[]>([]);
+  const [quickNotes, setQuickNotes] = useState<QuickNote[]>([]);
+  const [comboDialog, setComboDialog] = useState<{
+    combo: Combo;
+    initialPick: { slotId: string; pick: ComboPick } | null;
+    /** The standalone line one unit of which the combo replaces once it is added. */
+    replacesCartItemId: string | null;
+  } | null>(null);
+  const [comboUpgrade, setComboUpgrade] = useState<{
+    combo: Combo;
+    slotId: string;
+    extra: number;
+    cartItemId: string;
+    pick: ComboPick;
+  } | null>(null);
+  const oneTapModifiers = usePosSettingsStore((state) => state.oneTapModifiers);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    api
+      .get('/combos', { signal: controller.signal })
+      .then((res) => setCombos((res.data?.combos as Combo[]) || []))
+      .catch(() => {});
+    api
+      .get('/settings/quick-notes', { signal: controller.signal })
+      .then((res) => setQuickNotes((res.data?.quick_notes as QuickNote[]) || []))
+      .catch(() => {});
+    return () => controller.abort();
+  }, []);
   const [checkoutTable, setCheckoutTable] = useState<Table | null>(null);
   const [paymentBill, setPaymentBill] = useState<Bill | null>(null);
   const [checkoutOverridePin, setCheckoutOverridePin] = useState<string | undefined>();
@@ -1799,9 +1835,54 @@ export default function POSPage() {
     [t],
   );
 
+  // Offers the cheapest combo that contains the item just added on its own.
+  const offerComboUpgrade = (
+    product: Product,
+    addons: Addon[],
+    instructions: string,
+    variant: ProductVariant | null,
+  ) => {
+    const onlineSelected = cart.orderType === 'online' && cart.onlinePlatform.trim().length > 0;
+    const offer = findComboUpgrade(
+      combos,
+      product,
+      cartVariantUnitPrice({ product, variant }, onlineSelected),
+    );
+    if (!offer) {
+      setComboUpgrade(null);
+      return;
+    }
+    setComboUpgrade({
+      combo: offer.combo,
+      slotId: offer.slot.id,
+      extra: offer.extra,
+      cartItemId: generateCartItemId(product.id, variant?.id ?? null, addons, instructions),
+      pick: { product, variant, addons, special_instructions: instructions },
+    });
+  };
+
+  const acceptComboUpgrade = () => {
+    if (!comboUpgrade) return;
+    setComboDialog({
+      combo: comboUpgrade.combo,
+      initialPick: { slotId: comboUpgrade.slotId, pick: comboUpgrade.pick },
+      replacesCartItemId: comboUpgrade.cartItemId,
+    });
+    setComboUpgrade(null);
+  };
+
+  const handleComboAdd = (lines: CartItem[]) => {
+    const replaced = comboDialog?.replacesCartItemId
+      ? cart.items.find((item) => item.id === comboDialog.replacesCartItemId)
+      : undefined;
+    if (replaced) cart.updateQuantity(replaced.id, replaced.quantity - 1);
+    cart.addCombo(lines);
+  };
+
   const handleProductClick = (product: Product, quantity = 1) => {
     if (!productNeedsCustomizer(product)) {
       cart.addItem(product, quantity);
+      offerComboUpgrade(product, [], '', null);
       return;
     }
     setAddonInitialQuantity(quantity);
@@ -1827,6 +1908,7 @@ export default function POSPage() {
     variant: ProductVariant | null,
   ) => {
     cart.addItem(product, quantity, addons, instructions, variant);
+    offerComboUpgrade(product, addons, instructions, variant);
   };
 
   const handleEditItemSave = (
@@ -1844,6 +1926,7 @@ export default function POSPage() {
   // product grid — e.g. it could be a barcode field inside that modal.
   const anyOtherModalOpen =
     !!addonProduct ||
+    !!comboDialog ||
     !!editingCartItem ||
     !!checkoutTable ||
     !!paymentBill ||
@@ -4256,6 +4339,21 @@ export default function POSPage() {
       <div className="flex flex-1 min-h-0 overflow-hidden px-3 py-2 sm:px-4 sm:py-2.5 gap-3 sm:gap-4">
         {/* Product Grid — full width on mobile, flex-1 on desktop */}
         <div className="flex-1 min-w-0 h-full flex flex-col">
+          {comboUpgrade && (
+            <ComboUpgradeBanner
+              comboName={comboUpgrade.combo.name}
+              extra={comboUpgrade.extra}
+              onAccept={acceptComboUpgrade}
+              onDismiss={() => setComboUpgrade(null)}
+            />
+          )}
+          <ComboStrip
+            combos={combos}
+            onSelect={(combo) => {
+              setComboUpgrade(null);
+              setComboDialog({ combo, initialPick: null, replacesCartItemId: null });
+            }}
+          />
           <ProductGrid
             categories={categories}
             products={products}
@@ -4319,10 +4417,28 @@ export default function POSPage() {
         />
       )}
 
+      {comboDialog && (
+        <ComboModal
+          combo={comboDialog.combo}
+          products={products}
+          currency={currency}
+          quickNotes={quickNotes}
+          oneTap={oneTapModifiers}
+          onlinePlatformSelected={
+            cart.orderType === 'online' && cart.onlinePlatform.trim().length > 0
+          }
+          initialPick={comboDialog.initialPick}
+          onAdd={handleComboAdd}
+          onClose={() => setComboDialog(null)}
+        />
+      )}
+
       {addonProduct && (
         <AddonModal
           product={addonProduct}
           currency={currency}
+          oneTap={oneTapModifiers}
+          quickNotes={quickNotesForProduct(quickNotes, addonProduct)}
           initialQuantity={addonInitialQuantity}
           initialVariant={addonInitialVariant}
           onlinePlatformSelected={
@@ -4342,6 +4458,8 @@ export default function POSPage() {
           product={editingCartItem.product}
           currency={currency}
           mode="edit"
+          comboSlot={Boolean(editingCartItem.combo)}
+          quickNotes={quickNotesForProduct(quickNotes, editingCartItem.product)}
           initialQuantity={editingCartItem.quantity}
           initialAddons={editingCartItem.addons}
           initialInstructions={editingCartItem.special_instructions}

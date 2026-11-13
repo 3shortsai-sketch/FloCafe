@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Makipag-ugnayan lang sa support kung may bukas nang shift sa terminal na ito at nagpapatuloy pa rin ang error.",
     "validationClosedBooksGuidance": "Sarado na ang araw ng negosyo ngayon at hindi na maaaring buksan muli. Magpapatuloy ang mga bagong order at galaw ng pera sa susunod na araw ng negosyo.",
     "validationClosedBooksEvidenceHint": "Makipag-ugnayan lang sa support kung lumalabas na sarado ang araw ng negosyo sa maling petsa o timezone ng tindahan.",
-    "validationGenericEvidenceHint": "Makipag-ugnayan lang sa support kung naniniwala kang tinanggihan ng pagsusuring ito ang isang wastong kahilingan."
+    "validationGenericEvidenceHint": "Makipag-ugnayan lang sa support kung naniniwala kang tinanggihan ng pagsusuring ito ang isang wastong kahilingan.",
+    "combos": "Mga Combo",
+    "comboConfirmChoice": "Gamitin ang pagpipiliang ito",
+    "comboChooseEverySlot": "Pumili ng item para sa bawat pagpipilian",
+    "comboUpgradePrompt": "Gawing {combo} sa halagang +{extra}?",
+    "comboUpgradeAccept": "I-upgrade"
   },
   "printTest": {
     "amt": "Halaga",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "I-deactivate ang variant na ito kapag nai-save at hindi ito maibabalik mula sa screen na ito.",
     "variantRemoveAllConfirm": "Kapag pinatay ito, made-deactivate ang lahat ng variant ng produktong ito. Nananatili ang dating mga order.",
     "parentCategory": "Pangunahing Kategorya",
-    "parentCategoryNone": "Wala (Nangungunang antas)"
+    "parentCategoryNone": "Wala (Nangungunang antas)",
+    "tabCombos": "Mga Combo",
+    "fieldAddonDefault": "Paunang pili",
+    "combosIntro": "Ang combo ay nagbebenta ng ilang item sa menu nang sabay-sabay sa iisang presyo. Patuloy na binabawasan ng bawat item ang sarili nitong stock at may sarili pa rin itong gastos, at hinahati ang presyo ng combo sa mga item ayon sa proporsyon ng kanilang presyo sa menu.",
+    "addCombo": "Magdagdag ng combo",
+    "editCombo": "I-edit ang combo",
+    "combosEmpty": "Wala pang mga combo",
+    "combosLoadFailed": "Hindi ma-load ang mga combo",
+    "comboSaved": "Na-save ang combo",
+    "comboSaveFailed": "Hindi ma-save ang combo",
+    "comboDeleteConfirm": "Burahin ang combo na \"{name}\"? Hindi babaguhin ang mga order na kasama na ito.",
+    "comboName": "Pangalan ng combo",
+    "comboPrice": "Presyo ng combo",
+    "comboDescription": "Deskripsyon (opsyonal)",
+    "comboUpsell": "Imungkahi ang combo na ito sa kaha",
+    "comboSlotName": "Pangalan ng pagpipilian",
+    "comboSlotNamePlaceholder": "Pangalan ng pagpipilian, hal. Inumin",
+    "comboUpcharge": "Dagdag na singil",
+    "comboUpchargePlaceholder": "Dagdag (opsyonal)",
+    "comboSearchProducts": "Maghanap ng mga produktong idadagdag",
+    "addComboSlot": "Magdagdag ng pagpipilian"
   },
   "productAnalytics": {
     "title": "Tulungan kaming magpasya kung ano ang susunod naming gagawin",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 oras",
     "refundWindow4h": "4 na oras",
     "refundWindowSameDay": "Parehong araw ng negosyo",
-    "refundOwnerUnlimitedNote": "Maaaring aprubahan palagi ng mga may-ari ang refund para sa anumang nakaraang order gamit ang kanilang Staff Approval PIN."
+    "refundOwnerUnlimitedNote": "Maaaring aprubahan palagi ng mga may-ari ang refund para sa anumang nakaraang order gamit ang kanilang Staff Approval PIN.",
+    "oneTapModifiers": "Isang-tap na pagdagdag",
+    "oneTapModifiersHint": "Kapag may iisang pagpipilian lang ang item na isa lang ang mapipili (gaya ng sarsa o laki), direktang naidadagdag ang item sa cart kapag tinap ang opsyon.",
+    "quickNotesTitle": "Mabilisang tala sa item",
+    "quickNotesHint": "Mga tala na maidadagdag ng cashier sa isang item sa isang tap, gaya ng \"Walang sarsa\" o \"Kaunting yelo\". Limitahan ang tala sa ilang kategorya, o hayaan ito para sa lahat ng item.",
+    "quickNotesPlaceholder": "Bagong tala, hal. Sobrang lutong",
+    "quickNotesAllItems": "Ipinapakita sa lahat ng item. Limitahan sa:",
+    "quickNotesOnlyIn": "Ipinapakita lamang sa:",
+    "quickNotesEmpty": "Wala pang mabilisang tala",
+    "quickNotesSaved": "Na-save ang mabilisang tala",
+    "quickNotesSaveFailed": "Hindi ma-save ang mabilisang tala"
   },
   "setup": {
     "alreadyCompleted": "Nakumpleto na ang setup sa installation na ito. Nireredirect sa pag-login…",

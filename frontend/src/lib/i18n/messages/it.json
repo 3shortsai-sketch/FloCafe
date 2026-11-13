@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Contatta il supporto solo se un turno è già aperto su questo terminale e l'errore persiste.",
     "validationClosedBooksGuidance": "La giornata lavorativa di oggi è chiusa e non può essere riaperta. I nuovi ordini e i movimenti di cassa riprenderanno il prossimo giorno lavorativo.",
     "validationClosedBooksEvidenceHint": "Contatta il supporto solo se la giornata lavorativa di oggi risulta chiusa con data o fuso orario del punto vendita errati.",
-    "validationGenericEvidenceHint": "Contatta il supporto solo se ritieni che questo controllo di convalida abbia rifiutato una richiesta valida."
+    "validationGenericEvidenceHint": "Contatta il supporto solo se ritieni che questo controllo di convalida abbia rifiutato una richiesta valida.",
+    "combos": "Combo",
+    "comboConfirmChoice": "Usa questa scelta",
+    "comboChooseEverySlot": "Scegli un articolo per ogni scelta",
+    "comboUpgradePrompt": "Lo trasformi in {combo} per +{extra}?",
+    "comboUpgradeAccept": "Passa al combo"
   },
   "printTest": {
     "amt": "Importo",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Questa variante verrà disattivata al salvataggio e non potrà essere ripristinata da questa schermata.",
     "variantRemoveAllConfirm": "Disattivandolo verranno disattivate tutte le varianti di questo prodotto. Gli ordini passati le conservano.",
     "parentCategory": "Categoria principale",
-    "parentCategoryNone": "Nessuna (livello principale)"
+    "parentCategoryNone": "Nessuna (livello principale)",
+    "tabCombos": "Combo",
+    "fieldAddonDefault": "Predefinito",
+    "combosIntro": "Un combo vende insieme più articoli del menu a un unico prezzo. Ogni articolo continua a scalare le proprie scorte e a mantenere il proprio costo, e il prezzo del combo viene ripartito tra gli articoli in proporzione ai rispettivi prezzi di menu.",
+    "addCombo": "Aggiungi combo",
+    "editCombo": "Modifica combo",
+    "combosEmpty": "Ancora nessun combo",
+    "combosLoadFailed": "Impossibile caricare i combo",
+    "comboSaved": "Combo salvato",
+    "comboSaveFailed": "Impossibile salvare il combo",
+    "comboDeleteConfirm": "Eliminare il combo \"{name}\"? Gli ordini che lo includono già non vengono modificati.",
+    "comboName": "Nome del combo",
+    "comboPrice": "Prezzo del combo",
+    "comboDescription": "Descrizione (facoltativa)",
+    "comboUpsell": "Suggerisci questo combo alla cassa",
+    "comboSlotName": "Nome della scelta",
+    "comboSlotNamePlaceholder": "Nome della scelta, ad es. Bevanda",
+    "comboUpcharge": "Supplemento",
+    "comboUpchargePlaceholder": "Supplemento (facoltativo)",
+    "comboSearchProducts": "Cerca prodotti da aggiungere",
+    "addComboSlot": "Aggiungi scelta"
   },
   "productAnalytics": {
     "title": "Aiutaci a decidere cosa costruire dopo",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 ore",
     "refundWindow4h": "4 ore",
     "refundWindowSameDay": "Stesso giorno lavorativo",
-    "refundOwnerUnlimitedNote": "I titolari possono sempre approvare i rimborsi per qualsiasi ordine passato con il proprio PIN di approvazione."
+    "refundOwnerUnlimitedNote": "I titolari possono sempre approvare i rimborsi per qualsiasi ordine passato con il proprio PIN di approvazione.",
+    "oneTapModifiers": "Aggiunta con un tocco",
+    "oneTapModifiersHint": "Quando un articolo ha una sola scelta a opzione singola (come una salsa o una misura), toccare l'opzione aggiunge l'articolo direttamente al carrello.",
+    "quickNotesTitle": "Note rapide sugli articoli",
+    "quickNotesHint": "Note che il cassiere può aggiungere a un articolo con un tocco, come \"Senza salsa\" o \"Poco ghiaccio\". Limita una nota a determinate categorie oppure lasciala per tutti gli articoli.",
+    "quickNotesPlaceholder": "Nuova nota, ad es. Extra croccante",
+    "quickNotesAllItems": "Mostrata su tutti gli articoli. Limita a:",
+    "quickNotesOnlyIn": "Mostrata solo in:",
+    "quickNotesEmpty": "Ancora nessuna nota rapida",
+    "quickNotesSaved": "Note rapide salvate",
+    "quickNotesSaveFailed": "Impossibile salvare le note rapide"
   },
   "setup": {
     "alreadyCompleted": "La configurazione è già stata completata su questa installazione. Reindirizzamento all'accesso…",

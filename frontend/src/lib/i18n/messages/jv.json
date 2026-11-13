@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Hubungi dhukungan mung yen shift wis dibukak ing terminal iki nanging masalah iki isih ana.",
     "validationClosedBooksGuidance": "Dina bisnis dina iki wis ditutup lan ora bisa dibukak maneh. Pesenan anyar lan transaksi tunai bakal dilanjutake ing dina bisnis sabanjure.",
     "validationClosedBooksEvidenceHint": "Hubungi dhukungan mung yen dina bisnis dina iki katon ditutup ing tanggal utawa zona wektu toko sing salah.",
-    "validationGenericEvidenceHint": "Hubungi dhukungan mung yen sampeyan yakin pamriksan validasi iki nolak panjalukan sing bener."
+    "validationGenericEvidenceHint": "Hubungi dhukungan mung yen sampeyan yakin pamriksan validasi iki nolak panjalukan sing bener.",
+    "combos": "Paket",
+    "comboConfirmChoice": "Gunakake pilihan iki",
+    "comboChooseEverySlot": "Pilihen item kanggo saben pilihan",
+    "comboUpgradePrompt": "Dadekake {combo} kanthi +{extra}?",
+    "comboUpgradeAccept": "Dadekake paket"
   },
   "printTest": {
     "amt": "Gng",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Varian iki bakal dipateni nalika disimpen lan ora bisa dipulihake saka layar iki.",
     "variantRemoveAllConfirm": "Mateni iku bakal mateni kabeh varian produk iki. Pesenan lawas tetep nyimpen iku.",
     "parentCategory": "Kategori Babon",
-    "parentCategoryNone": "Ora ana (Tataran dhuwur)"
+    "parentCategoryNone": "Ora ana (Tataran dhuwur)",
+    "tabCombos": "Paket",
+    "fieldAddonDefault": "Gawan",
+    "combosIntro": "Paket ngedol sawetara item menu bebarengan kanthi siji rega. Saben item tetep nyuda stoké dhewe lan nyimpen biayané dhewe, lan rega paket dibagi menyang saben item miturut imbangan rega menuné.",
+    "addCombo": "Tambahake paket",
+    "editCombo": "Owahi paket",
+    "combosEmpty": "Durung ana paket",
+    "combosLoadFailed": "Ora bisa ngemot paket",
+    "comboSaved": "Paket wis disimpen",
+    "comboSaveFailed": "Ora bisa nyimpen paket",
+    "comboDeleteConfirm": "Busak paket \"{name}\"? Pesenan sing wis ngemot paket iki ora diowahi.",
+    "comboName": "Jeneng paket",
+    "comboPrice": "Rega paket",
+    "comboDescription": "Katrangan (opsional)",
+    "comboUpsell": "Tawakake paket iki ing kasir",
+    "comboSlotName": "Jeneng pilihan",
+    "comboSlotNamePlaceholder": "Jeneng pilihan, umpamane Ombenan",
+    "comboUpcharge": "Ragad tambahan",
+    "comboUpchargePlaceholder": "Tambahan (opsional)",
+    "comboSearchProducts": "Goleki produk sing arep ditambahake",
+    "addComboSlot": "Tambahake pilihan"
   },
   "productAnalytics": {
     "title": "Bantu kita nemtokake apa sing digawe sabanjure",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 jam",
     "refundWindow4h": "4 jam",
     "refundWindowSameDay": "Dina kerja sing padha",
-    "refundOwnerUnlimitedNote": "Sing duwe toko tansah bisa nyetujoni bali dhuwit kanggo pesanan lawas apa wae nganggo PIN Persetujuan Staf dheweke."
+    "refundOwnerUnlimitedNote": "Sing duwe toko tansah bisa nyetujoni bali dhuwit kanggo pesanan lawas apa wae nganggo PIN Persetujuan Staf dheweke.",
+    "oneTapModifiers": "Tambah sepisan tutul",
+    "oneTapModifiersHint": "Yen item mung nduwé siji pilihan tunggal (kayata saus utawa ukuran), nutul opsi bakal langsung nambahake item menyang kranjang.",
+    "quickNotesTitle": "Cathetan cepet item",
+    "quickNotesHint": "Cathetan sing bisa ditambahake kasir menyang item kanthi sepisan tutul, kayata \"Tanpa saus\" utawa \"Es sithik\". Watesi cathetan kanggo kategori tartamtu, utawa tinggalen kanggo kabèh item.",
+    "quickNotesPlaceholder": "Cathetan anyar, umpamane Luwih kriuk",
+    "quickNotesAllItems": "Ditampilake ing kabèh item. Watesi kanggo:",
+    "quickNotesOnlyIn": "Mung ditampilake ing:",
+    "quickNotesEmpty": "Durung ana cathetan cepet",
+    "quickNotesSaved": "Cathetan cepet wis disimpen",
+    "quickNotesSaveFailed": "Ora bisa nyimpen cathetan cepet"
   },
   "setup": {
     "alreadyCompleted": "Pangaturan wiwitan wis rampung ditindakake ing pamasangan iki. Ngalihake menyang layar mlebu…",

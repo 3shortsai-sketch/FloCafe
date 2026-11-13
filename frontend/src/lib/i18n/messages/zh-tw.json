@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "僅在此終端機已開啟班次但錯誤持續發生時才聯繫支援。",
     "validationClosedBooksGuidance": "今日營業日已關帳且無法重新開啟。新訂單與現金作業將於下一個營業日恢復。",
     "validationClosedBooksEvidenceHint": "僅在今日營業日因門市日期或時區錯誤而顯示為已關帳時才聯繫支援。",
-    "validationGenericEvidenceHint": "僅在您認為此驗證檢查拒絕了有效請求時才聯繫支援。"
+    "validationGenericEvidenceHint": "僅在您認為此驗證檢查拒絕了有效請求時才聯繫支援。",
+    "combos": "套餐",
+    "comboConfirmChoice": "確認此選擇",
+    "comboChooseEverySlot": "請為每個選項組選擇一個商品",
+    "comboUpgradePrompt": "+{extra} 升級為{combo}？",
+    "comboUpgradeAccept": "升級"
   },
   "printTest": {
     "amt": "金額",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "該變體儲存後將被停用，且無法在此頁面還原。",
     "variantRemoveAllConfirm": "關閉後將停用該商品的所有變體，歷史訂單仍會保留。",
     "parentCategory": "父類別",
-    "parentCategoryNone": "無（頂層類別）"
+    "parentCategoryNone": "無（頂層類別）",
+    "tabCombos": "套餐",
+    "fieldAddonDefault": "預設選取",
+    "combosIntro": "套餐將多個菜單商品組合以單一價格販售。每個商品仍各自扣減庫存並保留自身成本，套餐價格依各商品菜單價格的比例分攤。",
+    "addCombo": "新增套餐",
+    "editCombo": "編輯套餐",
+    "combosEmpty": "還沒有套餐",
+    "combosLoadFailed": "無法載入套餐",
+    "comboSaved": "套餐已儲存",
+    "comboSaveFailed": "無法儲存套餐",
+    "comboDeleteConfirm": "刪除套餐「{name}」？已包含此套餐的訂單不受影響。",
+    "comboName": "套餐名稱",
+    "comboPrice": "套餐價格",
+    "comboDescription": "描述（選填）",
+    "comboUpsell": "在收銀台推薦此套餐",
+    "comboSlotName": "選項組名稱",
+    "comboSlotNamePlaceholder": "選項組名稱，例如飲料",
+    "comboUpcharge": "加價",
+    "comboUpchargePlaceholder": "加價（選填）",
+    "comboSearchProducts": "搜尋要新增的商品",
+    "addComboSlot": "新增選項組"
   },
   "productAnalytics": {
     "title": "幫我們決定下一步要做什麼",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 小時",
     "refundWindow4h": "4 小時",
     "refundWindowSameDay": "同一營業日",
-    "refundOwnerUnlimitedNote": "店主始終可以使用其員工核准 PIN 碼核准任何歷史訂單的退款。"
+    "refundOwnerUnlimitedNote": "店主始終可以使用其員工核准 PIN 碼核准任何歷史訂單的退款。",
+    "oneTapModifiers": "一鍵加入",
+    "oneTapModifiersHint": "當商品只有一個單選項目（如醬料或尺寸）時，點選該選項即可將商品直接加入購物車。",
+    "quickNotesTitle": "商品快速備註",
+    "quickNotesHint": "收銀員一鍵即可加到商品上的備註，例如「不要醬」或「少冰」。可將備註限定於特定分類，或對所有商品顯示。",
+    "quickNotesPlaceholder": "新備註，例如加脆",
+    "quickNotesAllItems": "所有商品皆顯示。限定為：",
+    "quickNotesOnlyIn": "僅顯示於：",
+    "quickNotesEmpty": "還沒有快速備註",
+    "quickNotesSaved": "快速備註已儲存",
+    "quickNotesSaveFailed": "無法儲存快速備註"
   },
   "setup": {
     "alreadyCompleted": "此安裝已完成設定。正在跳轉到登入…",

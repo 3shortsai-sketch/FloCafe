@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Entre em contato com o suporte apenas se já houver um turno aberto neste terminal e o erro persistir.",
     "validationClosedBooksGuidance": "O dia comercial de hoje está fechado e não pode ser reaberto. Novos pedidos e movimentações em dinheiro retornam no próximo dia comercial.",
     "validationClosedBooksEvidenceHint": "Entre em contato com o suporte apenas se o dia comercial de hoje parecer fechado na data ou fuso horário incorretos da loja.",
-    "validationGenericEvidenceHint": "Entre em contato com o suporte apenas se acreditar que esta validação recusou uma solicitação válida."
+    "validationGenericEvidenceHint": "Entre em contato com o suporte apenas se acreditar que esta validação recusou uma solicitação válida.",
+    "combos": "Combos",
+    "comboConfirmChoice": "Usar esta escolha",
+    "comboChooseEverySlot": "Selecione um item para cada escolha",
+    "comboUpgradePrompt": "Transformar em {combo} por +{extra}?",
+    "comboUpgradeAccept": "Transformar"
   },
   "printTest": {
     "amt": "Total",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Esta variante será desativada ao salvar e não poderá ser restaurada a partir desta tela.",
     "variantRemoveAllConfirm": "Ao desligar, todas as variantes deste produto serão desativadas. Os pedidos anteriores as mantêm.",
     "parentCategory": "Categoria principal",
-    "parentCategoryNone": "Nenhuma (nível principal)"
+    "parentCategoryNone": "Nenhuma (nível principal)",
+    "tabCombos": "Combos",
+    "fieldAddonDefault": "Padrão",
+    "combosIntro": "Um combo vende vários itens do menu juntos por um único preço. Cada item continua dando baixa no próprio estoque e mantendo o próprio custo, e o preço do combo é dividido entre os itens na proporção dos seus preços no menu.",
+    "addCombo": "Adicionar combo",
+    "editCombo": "Editar combo",
+    "combosEmpty": "Nenhum combo ainda",
+    "combosLoadFailed": "Não foi possível carregar os combos",
+    "comboSaved": "Combo salvo",
+    "comboSaveFailed": "Não foi possível salvar o combo",
+    "comboDeleteConfirm": "Excluir o combo \"{name}\"? Pedidos que já o incluem não são alterados.",
+    "comboName": "Nome do combo",
+    "comboPrice": "Preço do combo",
+    "comboDescription": "Descrição (opcional)",
+    "comboUpsell": "Sugerir este combo no caixa",
+    "comboSlotName": "Nome da escolha",
+    "comboSlotNamePlaceholder": "Nome da escolha, ex.: Bebida",
+    "comboUpcharge": "Valor adicional",
+    "comboUpchargePlaceholder": "Adicional (opcional)",
+    "comboSearchProducts": "Buscar produtos para adicionar",
+    "addComboSlot": "Adicionar escolha"
   },
   "productAnalytics": {
     "title": "Ajude-nos a decidir o que construir a seguir",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 horas",
     "refundWindow4h": "4 horas",
     "refundWindowSameDay": "Mesmo dia comercial",
-    "refundOwnerUnlimitedNote": "Os proprietários podem sempre aprovar reembolsos de qualquer pedido anterior com seu PIN de aprovação."
+    "refundOwnerUnlimitedNote": "Os proprietários podem sempre aprovar reembolsos de qualquer pedido anterior com seu PIN de aprovação.",
+    "oneTapModifiers": "Adicionar com um toque",
+    "oneTapModifiersHint": "Quando um item tem apenas uma escolha de opção única (como um molho ou um tamanho), tocar na opção adiciona o item direto ao carrinho.",
+    "quickNotesTitle": "Observações rápidas de itens",
+    "quickNotesHint": "Observações que o caixa pode adicionar a um item com um toque, como \"Sem molho\" ou \"Pouco gelo\". Limite uma observação a determinadas categorias ou deixe-a para todos os itens.",
+    "quickNotesPlaceholder": "Nova observação, ex.: Bem crocante",
+    "quickNotesAllItems": "Exibida em todos os itens. Limitar a:",
+    "quickNotesOnlyIn": "Exibida apenas em:",
+    "quickNotesEmpty": "Nenhuma observação rápida ainda",
+    "quickNotesSaved": "Observações rápidas salvas",
+    "quickNotesSaveFailed": "Não foi possível salvar as observações rápidas"
   },
   "setup": {
     "alreadyCompleted": "A configuração já foi concluída nesta instalação. Redirecionando para o login…",

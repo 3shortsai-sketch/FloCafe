@@ -66,6 +66,11 @@ import {
 import { countryConfirmationPatch } from '../services/country-provenance';
 import { getHttpRequestSignal, trackHttpRequestWork } from '../shutdown';
 import { asyncHandler } from '../middleware/async-handler';
+import {
+  QuickNotesValidationError,
+  parseQuickNotes,
+  readQuickNotes,
+} from '../services/quick-notes';
 import { normalizeOptionalPhone } from '../lib/phone';
 import { MAX_PDF_HTML_BYTES, renderHtmlToPdfBuffer } from '../services/html-to-pdf';
 import { isPosCategorySort, isPosItemSort, readPosSortSettings } from '../lib/pos-sort';
@@ -739,6 +744,43 @@ router.put('/discount', requirePermission('settings.manage'), (req: Request, res
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+// ─── Quick item notes (must come BEFORE /:key wildcard) ─────────────────────
+
+router.get(
+  '/quick-notes',
+  settingsReadRateLimit,
+  requireAnyPermission('pos.use', 'orders.create', 'settings.view'),
+  (_req: Request, res: Response) => {
+    try {
+      res.json({ quick_notes: readQuickNotes(getAllSettings(getDatabase()).quick_notes) });
+    } catch (error: any) {
+      res.locals.postHogError = error;
+      console.error('[API] Internal error:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  },
+);
+
+router.put(
+  '/quick-notes',
+  settingsWriteRateLimit,
+  requirePermission('settings.manage'),
+  (req: Request, res: Response) => {
+    try {
+      const quickNotes = parseQuickNotes(req.body?.quick_notes);
+      upsertSettings(getDatabase(), { quick_notes: JSON.stringify(quickNotes) });
+      res.json({ quick_notes: quickNotes });
+    } catch (error: any) {
+      if (error instanceof QuickNotesValidationError) {
+        return res.status(400).json({ error: error.message });
+      }
+      res.locals.postHogError = error;
+      console.error('[API] Internal error:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  },
+);
 
 // ─── KDS settings (must come BEFORE /:key wildcard) ─────────────────────────
 

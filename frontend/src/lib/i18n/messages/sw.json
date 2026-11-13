@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Wasiliana na usaidizi tu ikiwa zamu tayari imefunguliwa kwenye kifaa hiki na hitilafu hii inaendelea.",
     "validationClosedBooksGuidance": "Siku ya biashara ya leo imefungwa na haiwezi kufunguliwa tena. Oda mpya na shughuli za pesa taslimu zitaendelea siku inayofuata ya biashara.",
     "validationClosedBooksEvidenceHint": "Wasiliana na usaidizi tu ikiwa siku ya biashara ya leo inaonekana imefungwa kwa tarehe au saa za eneo zisizo sahihi za duka.",
-    "validationGenericEvidenceHint": "Wasiliana na usaidizi tu ikiwa unaamini ukaguzi huu umekataa ombi halali."
+    "validationGenericEvidenceHint": "Wasiliana na usaidizi tu ikiwa unaamini ukaguzi huu umekataa ombi halali.",
+    "combos": "Kombo",
+    "comboConfirmChoice": "Tumia chaguo hili",
+    "comboChooseEverySlot": "Chagua bidhaa kwa kila chaguo",
+    "comboUpgradePrompt": "Ifanye {combo} kwa +{extra}?",
+    "comboUpgradeAccept": "Badilisha"
   },
   "printTest": {
     "amt": "Kiasi",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Aina hii itazimwa wakati wa kuhifadhi na haiwezi kurejeshwa kutoka kwenye skrini hii.",
     "variantRemoveAllConfirm": "Kuzima hii kunazima kila aina ya bidhaa hii. Oda za kihistoria zitaendelea kuzihifadhi.",
     "parentCategory": "Kategoria Kuu",
-    "parentCategoryNone": "Hakuna (Kiwango cha juu)"
+    "parentCategoryNone": "Hakuna (Kiwango cha juu)",
+    "tabCombos": "Kombo",
+    "fieldAddonDefault": "Chaguomsingi",
+    "combosIntro": "Kombo huuza bidhaa kadhaa za menyu pamoja kwa bei moja. Kila bidhaa bado inapunguza hisa yake yenyewe na kubaki na gharama yake, na bei ya kombo hugawanywa kati ya bidhaa kulingana na uwiano wa bei zao za menyu.",
+    "addCombo": "Ongeza kombo",
+    "editCombo": "Hariri kombo",
+    "combosEmpty": "Hakuna kombo bado",
+    "combosLoadFailed": "Imeshindwa kupakia kombo",
+    "comboSaved": "Kombo imehifadhiwa",
+    "comboSaveFailed": "Imeshindwa kuhifadhi kombo",
+    "comboDeleteConfirm": "Futa kombo \"{name}\"? Oda ambazo tayari zinaijumuisha hazitabadilishwa.",
+    "comboName": "Jina la kombo",
+    "comboPrice": "Bei ya kombo",
+    "comboDescription": "Maelezo (hiari)",
+    "comboUpsell": "Pendekeza kombo hii kaunta",
+    "comboSlotName": "Jina la chaguo",
+    "comboSlotNamePlaceholder": "Jina la chaguo, k.m. Kinywaji",
+    "comboUpcharge": "Malipo ya ziada",
+    "comboUpchargePlaceholder": "Ziada (hiari)",
+    "comboSearchProducts": "Tafuta bidhaa za kuongeza",
+    "addComboSlot": "Ongeza chaguo"
   },
   "productAnalytics": {
     "title": "Tusaidie kuamua cha kujenga kinachofuata",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "Saa 2",
     "refundWindow4h": "Saa 4",
     "refundWindowSameDay": "Siku hiyo hiyo ya biashara",
-    "refundOwnerUnlimitedNote": "Wamiliki wanaweza kuidhinisha marejesho ya pesa kwa oda yoyote ya zamani wakati wowote kwa kutumia PIN yao ya Uidhinishaji."
+    "refundOwnerUnlimitedNote": "Wamiliki wanaweza kuidhinisha marejesho ya pesa kwa oda yoyote ya zamani wakati wowote kwa kutumia PIN yao ya Uidhinishaji.",
+    "oneTapModifiers": "Ongeza kwa mguso mmoja",
+    "oneTapModifiersHint": "Bidhaa ikiwa na chaguo moja tu la kuchagua kimoja (kama sosi au ukubwa), kugusa chaguo huongeza bidhaa moja kwa moja kwenye kikapu.",
+    "quickNotesTitle": "Maelezo ya haraka ya bidhaa",
+    "quickNotesHint": "Maelezo ambayo keshia anaweza kuongeza kwenye bidhaa kwa mguso mmoja, kama \"Bila sosi\" au \"Barafu kidogo\". Weka kikomo cha maelezo kwa kategoria fulani, au yaache kwa kila bidhaa.",
+    "quickNotesPlaceholder": "Maelezo mapya, k.m. Kaanga zaidi",
+    "quickNotesAllItems": "Huonyeshwa kwenye kila bidhaa. Weka kikomo kwa:",
+    "quickNotesOnlyIn": "Huonyeshwa tu katika:",
+    "quickNotesEmpty": "Hakuna maelezo ya haraka bado",
+    "quickNotesSaved": "Maelezo ya haraka yamehifadhiwa",
+    "quickNotesSaveFailed": "Imeshindwa kuhifadhi maelezo ya haraka"
   },
   "setup": {
     "alreadyCompleted": "Usanidi tayari umekamilishwa kwenye usakinishaji huu. Inaelekeza kwenye kuingia…",

@@ -73,6 +73,15 @@ export function useTaxPreview(
       ...(item.price_override
         ? { price_override: { price: normalizeOverridePrice(item.price_override.price) } }
         : {}),
+      ...(item.combo
+        ? {
+            combo: {
+              combo_id: item.combo.combo_id,
+              group_key: item.combo.group_key,
+              slot_id: item.combo.slot_id,
+            },
+          }
+        : {}),
     })),
     customer_id: customerId || null,
     packaging_charge: packagingCharge || 0,

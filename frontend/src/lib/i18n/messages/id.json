@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Hubungi dukungan hanya jika shift sudah dibuka di terminal ini dan kesalahan tetap muncul.",
     "validationClosedBooksGuidance": "Hari bisnis hari ini sudah ditutup dan tidak dapat dibuka kembali. Pesanan baru dan transaksi tunai dilanjutkan pada hari bisnis berikutnya.",
     "validationClosedBooksEvidenceHint": "Hubungi dukungan hanya jika hari bisnis hari ini tampak tertutup pada tanggal atau zona waktu toko yang salah.",
-    "validationGenericEvidenceHint": "Hubungi dukungan hanya jika Anda yakin pemeriksaan validasi ini menolak permintaan yang sah."
+    "validationGenericEvidenceHint": "Hubungi dukungan hanya jika Anda yakin pemeriksaan validasi ini menolak permintaan yang sah.",
+    "combos": "Paket",
+    "comboConfirmChoice": "Gunakan pilihan ini",
+    "comboChooseEverySlot": "Pilih item untuk setiap pilihan",
+    "comboUpgradePrompt": "Jadikan {combo} dengan +{extra}?",
+    "comboUpgradeAccept": "Jadikan paket"
   },
   "printTest": {
     "amt": "Jml",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Varian ini akan dinonaktifkan saat disimpan dan tidak dapat dipulihkan dari layar ini.",
     "variantRemoveAllConfirm": "Mematikannya akan menonaktifkan semua varian produk ini. Pesanan lama tetap menyimpannya.",
     "parentCategory": "Kategori Induk",
-    "parentCategoryNone": "Tidak ada (Tingkat atas)"
+    "parentCategoryNone": "Tidak ada (Tingkat atas)",
+    "tabCombos": "Paket",
+    "fieldAddonDefault": "Bawaan",
+    "combosIntro": "Paket menjual beberapa item menu sekaligus dengan satu harga. Setiap item tetap mengurangi stoknya sendiri dan mempertahankan biayanya sendiri, dan harga paket dibagi ke setiap item sesuai proporsi harga menunya.",
+    "addCombo": "Tambah paket",
+    "editCombo": "Ubah paket",
+    "combosEmpty": "Belum ada paket",
+    "combosLoadFailed": "Tidak dapat memuat paket",
+    "comboSaved": "Paket disimpan",
+    "comboSaveFailed": "Tidak dapat menyimpan paket",
+    "comboDeleteConfirm": "Hapus paket \"{name}\"? Pesanan yang sudah memuatnya tidak berubah.",
+    "comboName": "Nama paket",
+    "comboPrice": "Harga paket",
+    "comboDescription": "Deskripsi (opsional)",
+    "comboUpsell": "Sarankan paket ini di kasir",
+    "comboSlotName": "Nama pilihan",
+    "comboSlotNamePlaceholder": "Nama pilihan, mis. Minuman",
+    "comboUpcharge": "Biaya tambahan",
+    "comboUpchargePlaceholder": "Tambahan (opsional)",
+    "comboSearchProducts": "Cari produk untuk ditambahkan",
+    "addComboSlot": "Tambah pilihan"
   },
   "productAnalytics": {
     "title": "Bantu kami memutuskan apa yang dibuat berikutnya",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 jam",
     "refundWindow4h": "4 jam",
     "refundWindowSameDay": "Hari kerja yang sama",
-    "refundOwnerUnlimitedNote": "Pemilik selalu dapat menyetujui pengembalian dana untuk pesanan lama mana pun dengan PIN Persetujuan Staf mereka."
+    "refundOwnerUnlimitedNote": "Pemilik selalu dapat menyetujui pengembalian dana untuk pesanan lama mana pun dengan PIN Persetujuan Staf mereka.",
+    "oneTapModifiers": "Tambah sekali ketuk",
+    "oneTapModifiersHint": "Jika item hanya punya satu pilihan tunggal (seperti saus atau ukuran), mengetuk opsi akan langsung menambahkan item ke keranjang.",
+    "quickNotesTitle": "Catatan cepat item",
+    "quickNotesHint": "Catatan yang dapat ditambahkan kasir ke item dengan sekali ketuk, seperti \"Tanpa saus\" atau \"Sedikit es\". Batasi catatan ke kategori tertentu, atau biarkan untuk semua item.",
+    "quickNotesPlaceholder": "Catatan baru, mis. Ekstra renyah",
+    "quickNotesAllItems": "Tampil di semua item. Batasi ke:",
+    "quickNotesOnlyIn": "Hanya tampil di:",
+    "quickNotesEmpty": "Belum ada catatan cepat",
+    "quickNotesSaved": "Catatan cepat disimpan",
+    "quickNotesSaveFailed": "Tidak dapat menyimpan catatan cepat"
   },
   "setup": {
     "alreadyCompleted": "Pengaturan awal sudah selesai dilakukan pada instalasi ini. Mengalihkan ke layar masuk…",

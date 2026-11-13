@@ -1322,7 +1322,12 @@
     "validationShiftEvidenceHint": "Yalnızca bu terminalde zaten açık bir vardiya varsa ve hata devam ediyorsa destekle iletişime geçin.",
     "validationClosedBooksGuidance": "Bugünün iş günü kapatılmıştır ve yeniden açılamaz. Yeni siparişler ve nakit işlemleri bir sonraki iş gününde devam eder.",
     "validationClosedBooksEvidenceHint": "Yalnızca bugünün iş günü yanlış mağaza tarihi veya saat diliminde kapalı görünüyorsa destekle iletişime geçin.",
-    "validationGenericEvidenceHint": "Yalnızca bu doğrulama kontrolünün geçerli bir isteği reddettiğini düşünüyorsanız destekle iletişime geçin."
+    "validationGenericEvidenceHint": "Yalnızca bu doğrulama kontrolünün geçerli bir isteği reddettiğini düşünüyorsanız destekle iletişime geçin.",
+    "combos": "Kombo Menüler",
+    "comboConfirmChoice": "Bu seçimi kullan",
+    "comboChooseEverySlot": "Her seçim için bir ürün seçin",
+    "comboUpgradePrompt": "+{extra} karşılığında {combo} yapalım mı?",
+    "comboUpgradeAccept": "Menüye çevir"
   },
   "printTest": {
     "amt": "Tutar",
@@ -1701,7 +1706,27 @@
     "variantDeactivateConfirm": "Bu varyant kaydedildiğinde devre dışı bırakılır ve bu ekrandan geri alınamaz.",
     "variantRemoveAllConfirm": "Bunu kapatırsanız bu ürünün tüm varyantları devre dışı bırakılır. Eski siparişler korunur.",
     "parentCategory": "Üst Kategori",
-    "parentCategoryNone": "Yok (Üst düzey)"
+    "parentCategoryNone": "Yok (Üst düzey)",
+    "tabCombos": "Kombo Menüler",
+    "fieldAddonDefault": "Varsayılan",
+    "combosIntro": "Kombo menü, birden fazla menü ürününü tek bir fiyata birlikte satar. Her ürün yine kendi stoğundan düşer ve kendi maliyetini korur; kombo fiyatı ise ürünlere menü fiyatları oranında paylaştırılır.",
+    "addCombo": "Kombo menü ekle",
+    "editCombo": "Kombo menüyü düzenle",
+    "combosEmpty": "Henüz kombo menü yok",
+    "combosLoadFailed": "Kombo menüler yüklenemedi",
+    "comboSaved": "Kombo menü kaydedildi",
+    "comboSaveFailed": "Kombo menü kaydedilemedi",
+    "comboDeleteConfirm": "\"{name}\" kombo menüsü silinsin mi? Bunu zaten içeren siparişler değişmez.",
+    "comboName": "Kombo menü adı",
+    "comboPrice": "Kombo menü fiyatı",
+    "comboDescription": "Açıklama (isteğe bağlı)",
+    "comboUpsell": "Bu kombo menüyü kasada öner",
+    "comboSlotName": "Seçim adı",
+    "comboSlotNamePlaceholder": "Seçim adı, örn. İçecek",
+    "comboUpcharge": "Ek ücret",
+    "comboUpchargePlaceholder": "Ek ücret (isteğe bağlı)",
+    "comboSearchProducts": "Eklenecek ürünleri ara",
+    "addComboSlot": "Seçim ekle"
   },
   "productAnalytics": {
     "title": "Sırada ne yapacağımıza karar vermemize yardım edin",
@@ -2749,7 +2774,17 @@
     "refundWindow2h": "2 saat",
     "refundWindow4h": "4 saat",
     "refundWindowSameDay": "Aynı iş günü",
-    "refundOwnerUnlimitedNote": "İşletme sahipleri geçmiş herhangi bir siparişin iadesini kendi Personel Onay PIN kodlarıyla her zaman onaylayabilir."
+    "refundOwnerUnlimitedNote": "İşletme sahipleri geçmiş herhangi bir siparişin iadesini kendi Personel Onay PIN kodlarıyla her zaman onaylayabilir.",
+    "oneTapModifiers": "Tek dokunuşla ekle",
+    "oneTapModifiersHint": "Bir ürünün yalnızca tek seçimli bir seçeneği olduğunda (sos veya boyut gibi), seçeneğe dokunmak ürünü doğrudan sepete ekler.",
+    "quickNotesTitle": "Hızlı ürün notları",
+    "quickNotesHint": "Kasiyerin bir ürüne tek dokunuşla ekleyebileceği notlar; örneğin \"Sossuz\" veya \"Az buzlu\". Bir notu belirli kategorilerle sınırlayın ya da tüm ürünler için bırakın.",
+    "quickNotesPlaceholder": "Yeni not, örn. Ekstra çıtır",
+    "quickNotesAllItems": "Tüm ürünlerde gösterilir. Sınırla:",
+    "quickNotesOnlyIn": "Yalnızca şu kategorilerde gösterilir:",
+    "quickNotesEmpty": "Henüz hızlı not yok",
+    "quickNotesSaved": "Hızlı notlar kaydedildi",
+    "quickNotesSaveFailed": "Hızlı notlar kaydedilemedi"
   },
   "setup": {
     "alreadyCompleted": "Kurulum bu cihazda zaten tamamlandı. Giriş ekranına yönlendiriliyorsunuz…",

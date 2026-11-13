@@ -5,6 +5,7 @@ import { requireAnyPermission, requirePermission } from '../services/authorizati
 import { categoryRoutes } from './categories';
 import { productRoutes } from './products';
 import { addonGroupRoutes } from './addon-groups';
+import { comboRoutes } from './combos';
 import { orderRoutes } from './orders';
 import { orderItemRoutes } from './order-items';
 import { billRoutes } from './bills';
@@ -114,6 +115,7 @@ export function registerRoutes(app: Express): void {
   app.use('/api/categories', categoryRoutes);
   app.use('/api/products', productRoutes);
   app.use('/api/addon-groups', addonGroupRoutes);
+  app.use('/api/combos', comboRoutes);
   app.use('/api/orders', orderRoutes);
   app.use('/api/order-items', orderItemRoutes);
   app.use('/api/kitchen', kitchenRoutes);
